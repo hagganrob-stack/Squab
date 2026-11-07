@@ -7,7 +7,7 @@ import { cn, formatShortDate } from "@/lib/utils";
 import type { OfferWithBusiness } from "@/types/content";
 
 /**
- * Voucher-style offer card: an amber stub with the headline benefit, a
+ * Voucher-style offer card: an orange stub with the headline benefit, a
  * perforated tear line, and the offer details with a teaser of the code.
  * `notchClassName` must match the background the card sits on, so the
  * notches read as cut-outs.

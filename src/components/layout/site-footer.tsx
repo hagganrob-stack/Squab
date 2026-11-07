@@ -30,7 +30,7 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-navy-deep pb-24 text-white/80 lg:pb-0">
+    <footer className="bg-black pb-24 text-white/80 lg:pb-0">
       <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div className="max-w-xs">
           <Wordmark inverted />

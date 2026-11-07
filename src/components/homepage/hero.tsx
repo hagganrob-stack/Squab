@@ -16,10 +16,10 @@ function Headline({ text, highlight }: { text: string; highlight?: string }) {
   );
 }
 
-/** Full-bleed hero over the Squab site photograph, in the navy-over-photo style of Squab's social posts. */
+/** Full-bleed hero over the Squab site photograph, with a black wash as on The Hide page. */
 export function Hero({ hero }: { hero: HomepageSettings["hero"] }) {
   return (
-    <section className="relative isolate overflow-hidden bg-navy text-white">
+    <section className="relative isolate overflow-hidden bg-black text-white">
       {hero.imageUrl && (
         <Image
           src={hero.imageUrl}
@@ -30,10 +30,10 @@ export function Hero({ hero }: { hero: HomepageSettings["hero"] }) {
           className="-z-20 object-cover object-[60%_center]"
         />
       )}
-      {/* Navy wash keeps the text readable over the photo */}
+      {/* Black wash keeps the text readable over the photo */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy/60 to-navy/15 lg:bg-gradient-to-r lg:from-navy-deep/95 lg:via-navy/60 lg:to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/55 to-black/15 lg:bg-gradient-to-r lg:from-black/90 lg:via-black/55 lg:to-transparent"
       />
       <div className="container-page flex min-h-[34rem] flex-col justify-end py-14 sm:min-h-[38rem] lg:min-h-[42rem] lg:justify-center lg:py-24">
         <div className="max-w-2xl">

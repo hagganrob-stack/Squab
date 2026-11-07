@@ -40,7 +40,7 @@ export default async function StoriesPage() {
 
       {/* Lead story */}
       <section aria-label="Featured story" className="container-page pt-8">
-        <article className="group relative grid overflow-hidden rounded-[var(--radius-panel)] bg-navy text-white lg:grid-cols-[1.35fr_1fr]">
+        <article className="group relative grid overflow-hidden rounded-[var(--radius-panel)] bg-black text-white lg:grid-cols-[1.35fr_1fr]">
           <div className="relative">
             <Media src={lead.heroImageUrl} alt={lead.heroImageAlt} ratio="3/2" tone={lead.category.tone} rounded={false} priority sizes="(min-width: 1024px) 60vw, 100vw" className="h-full lg:aspect-auto! lg:min-h-[28rem]" label="Lead story photo" />
             {lead.isDemo && <SampleBadge className="absolute right-4 top-4" />}

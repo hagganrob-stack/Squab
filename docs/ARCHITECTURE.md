@@ -131,11 +131,11 @@ add the keys to the Vercel project settings.
 
 Tokens live in `src/app/globals.css`.
 
-- **Brand amber** `squab-500` `#F8A842` and **slate** `ink` `#2D3748`, from the
-  Squab Storage logo and the earlier Squab Perks prototype. White on amber fails
-  contrast (2:1), so amber surfaces always carry slate text (6.1:1) and
-  `squab-700` `#965607` is used for orange text on light backgrounds (5.8:1).
-- **Neutrals**: `ink` (slate) for type, `paper` (warm off-white)
+- **Brand palette** (director's direction, as set for The Hide by Squab): Squab
+  orange `#F4941E`, black, coffee cream `#EFE1D0` and white. Orange surfaces
+  always carry black text (9.1:1; white on orange fails at 2.3:1);
+  `squab-700` `#9A5408` is used for orange text on light backgrounds (≥5:1).
+- **Neutrals**: `ink` (near-black) for type, light coffee cream `paper` page background, full `cream` for feature sections,
   page background, white surfaces, `stone` muted greys, `line` hairlines.
 - **Category accents**: muted tints used only for story category chips.
 - **Type**: Manrope 700/800 headings with tight tracking; Inter 400–600 body.

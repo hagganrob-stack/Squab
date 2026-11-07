@@ -54,7 +54,7 @@ export default async function HomePage() {
       </Section>
 
       {/* Meet the community */}
-      <Section aria-labelledby="community-heading" className="bg-white">
+      <Section aria-labelledby="community-heading" className="bg-cream">
         <SectionHeader
           id="community-heading"
           eyebrow="Meet the community"
@@ -67,7 +67,7 @@ export default async function HomePage() {
             <li key={b.id} className="w-[70%] shrink-0 snap-start sm:w-auto">
               <Link
                 href={`/businesses/${b.slug}`}
-                className="group flex h-full items-start gap-4 rounded-[var(--radius-card)] bg-paper p-4 ring-1 ring-line/70 transition-shadow hover:shadow-lift"
+                className="group flex h-full items-start gap-4 rounded-[var(--radius-card)] bg-white p-4 transition-shadow hover:shadow-lift"
               >
                 <Logo src={b.logoUrl} name={b.name} size={52} dark={b.logoBackground === "dark"} />
                 <span className="min-w-0">
@@ -106,7 +106,7 @@ export default async function HomePage() {
       {/* Upcoming event */}
       {nextEvent && (
         <Section aria-labelledby="event-heading" className="pt-0 sm:pt-0">
-          <div className="overflow-hidden rounded-[var(--radius-panel)] bg-navy text-white lg:grid lg:grid-cols-2">
+          <div className="overflow-hidden rounded-[var(--radius-panel)] bg-black text-white lg:grid lg:grid-cols-2">
             <div className="relative">
               <Media src={nextEvent.imageUrl} alt="" ratio="16/9" tone="rose" rounded={false} className="h-full lg:aspect-auto!" label="Event photo" />
               {nextEvent.isDemo && <SampleBadge className="absolute right-4 top-4" />}

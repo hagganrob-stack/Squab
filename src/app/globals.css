@@ -1,40 +1,40 @@
 @import "tailwindcss";
 
 /*
- * Squab Connect design tokens — taken from the Squab Storage logo and the
- * Squab Perks prototype: amber #F8A842 and slate #2D3748.
+ * Squab Connect design tokens — the brand direction set for The Hide by Squab:
+ * Squab orange #F4941E, black, coffee cream #EFE1D0 and white.
  *
- * White text on squab-500 fails WCAG contrast (2:1): amber surfaces always
- * carry ink text. Use squab-700 for orange text on light backgrounds (5.8:1).
+ * Contrast rules (WCAG AA):
+ *  - Orange surfaces always carry black/ink text (9.1:1). White on orange fails (2.3:1).
+ *  - Orange text on light backgrounds uses squab-700 (5.1–5.8:1).
+ *  - Orange on black is fine for headings and accents (9.1:1).
  */
 @theme {
-  --color-squab-50: #fff7ec;
-  --color-squab-100: #feebd0;
-  --color-squab-200: #fcd6a1;
-  --color-squab-300: #fbc06f;
-  --color-squab-400: #f9b257;
-  --color-squab-500: #f8a842;
-  --color-squab-600: #e08a1c;
-  --color-squab-700: #965607;
-  --color-squab-800: #7a460a;
-  --color-squab-900: #5e3810;
+  --color-squab-50: #fef4e8;
+  --color-squab-100: #fde6ca;
+  --color-squab-200: #fbcf98;
+  --color-squab-300: #fbc17a;
+  --color-squab-400: #f7a64a;
+  --color-squab-500: #f4941e;
+  --color-squab-600: #db7f0c;
+  --color-squab-700: #9a5408;
+  --color-squab-800: #7a4307;
+  --color-squab-900: #5c3307;
 
-  /* Deep navy from the Squab Workspace social style: used sparingly for
-     dark panels, photo overlays and the footer. Amber on navy is 6.4:1. */
-  --color-navy: #183456;
-  --color-navy-deep: #0f2440;
+  /* Coffee cream: full strength for feature sections, light tint for the page. */
+  --color-cream: #efe1d0;
+  --color-paper: #f7f0e6;
 
-  /* The Hide by Squab brand (from The Hide website brief) — used on /the-hide only. */
-  --color-hide-orange: #f4941e;
-  --color-hide-cream: #efe1d0;
+  /* Kept as aliases so The Hide page reads clearly. */
+  --color-hide-orange: var(--color-squab-500);
+  --color-hide-cream: var(--color-cream);
   --color-hide-black: #000000;
 
-  --color-ink: #2d3748;
-  --color-ink-soft: #4a5568;
-  --color-paper: #faf8f5;
-  --color-stone-muted: #5f6673;
-  --color-line: #e8e3dc;
-  --color-mist: #f2eee8;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #3d3935;
+  --color-stone-muted: #625a51;
+  --color-line: #e6d9c7;
+  --color-mist: #efe5d8;
 
   /* Category accents: muted tints for chips and placeholders only. */
   --color-sage-50: #eef4ee;

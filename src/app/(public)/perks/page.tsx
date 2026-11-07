@@ -22,7 +22,7 @@ export default async function PerksPage() {
   const offers = await getOffers();
   return (
     <>
-      <header className="relative overflow-hidden bg-navy text-white">
+      <header className="relative overflow-hidden bg-black text-white">
         <div aria-hidden className="absolute -right-24 -top-24 size-96 rounded-full bg-squab-500/15 blur-2xl" />
         <div aria-hidden className="absolute -bottom-32 left-1/3 size-80 rounded-full bg-squab-500/10 blur-2xl" />
         <div className="container-page relative py-12 sm:py-16">

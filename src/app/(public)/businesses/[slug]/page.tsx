@@ -156,7 +156,7 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
           </div>
 
           {(business.location || business.squabConnection) && (
-            <div className="rounded-[var(--radius-card)] bg-navy p-6 text-white">
+            <div className="rounded-[var(--radius-card)] bg-black p-6 text-white">
               <h2 className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-squab-300">Where to find us</h2>
               {business.location && <p className="mt-3 flex items-center gap-2 font-semibold"><MapPin aria-hidden className="size-4 text-squab-300" />{business.location}</p>}
               {business.squabConnection && <p className="mt-2 text-white/75">{business.squabConnection}</p>}
