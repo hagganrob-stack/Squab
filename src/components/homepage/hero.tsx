@@ -1,46 +1,42 @@
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
-import { Media } from "@/components/ui/media";
 import type { HomepageSettings } from "@/types/content";
 
+/** Full-bleed hero over the Squab site photograph (set in homepage settings). */
 export function Hero({ hero }: { hero: HomepageSettings["hero"] }) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-white">
+    <section className="relative isolate overflow-hidden bg-ink text-white">
+      {hero.imageUrl && (
+        <Image
+          src={hero.imageUrl}
+          alt="Aerial view of a Squab site among the fields"
+          fill
+          priority
+          sizes="100vw"
+          className="-z-20 object-cover object-[60%_center]"
+        />
+      )}
+      {/* Darken the left/bottom so text stays readable over the photo */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-40 -top-40 size-[34rem] rounded-full bg-squab-100/80 blur-3xl"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/20 lg:bg-gradient-to-r lg:from-ink/90 lg:via-ink/55 lg:to-transparent"
       />
-      <div className="container-page relative grid items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24">
-        <div>
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-squab-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-squab-800">
+      <div className="container-page flex min-h-[34rem] flex-col justify-end py-14 sm:min-h-[38rem] lg:min-h-[42rem] lg:justify-center lg:py-24">
+        <div className="max-w-2xl">
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-squab-300 backdrop-blur-sm">
             <span aria-hidden className="size-1.5 rounded-full bg-squab-500" />
             {hero.eyebrow}
           </p>
-          <h1 className="text-display font-extrabold">{hero.headline}</h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-muted sm:text-xl">{hero.subheading}</p>
+          <h1 className="text-display font-extrabold text-white">{hero.headline}</h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">{hero.subheading}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href={hero.primaryCta.href} size="lg">
               {hero.primaryCta.label} <ArrowRight aria-hidden />
             </ButtonLink>
-            <ButtonLink href={hero.secondaryCta.href} size="lg" variant="secondary">
+            <ButtonLink href={hero.secondaryCta.href} size="lg" variant="onDark">
               {hero.secondaryCta.label}
             </ButtonLink>
-          </div>
-        </div>
-        {/* Collage: Squab facility (from homepage settings) plus partner photography */}
-        <div className="grid grid-cols-6 grid-rows-6 gap-3 sm:gap-4" style={{ aspectRatio: "1 / 0.92" }}>
-          <div className="col-span-4 row-span-4">
-            <Media src={hero.imageUrl} alt="The welcome area at a Squab Storage facility" ratio="1/1" priority className="size-full aspect-auto! rounded-[var(--radius-panel)]" label="Hero photo" sizes="(min-width: 1024px) 30vw, 66vw" />
-          </div>
-          <div className="col-span-2 row-span-3">
-            <Media src="/images/partners/rise-and-reform-cover.webp" alt="Reformer Pilates at Rise and Reform" ratio="1/1" className="size-full aspect-auto!" sizes="(min-width: 1024px) 15vw, 33vw" />
-          </div>
-          <div className="col-span-2 row-span-3 col-start-5 row-start-4">
-            <Media src="/images/squab/networking-room.webp" alt="A Squab networking morning" ratio="1/1" className="size-full aspect-auto!" sizes="(min-width: 1024px) 15vw, 33vw" />
-          </div>
-          <div className="col-span-4 row-span-2 row-start-5 flex items-center gap-4 rounded-[var(--radius-card)] bg-ink p-5 text-white">
-            <span className="font-display text-4xl font-extrabold text-squab-400">Perks</span>
-            <span className="text-sm leading-snug text-white/75">Exclusive offers from local businesses for Squab customers.</span>
           </div>
         </div>
       </div>
