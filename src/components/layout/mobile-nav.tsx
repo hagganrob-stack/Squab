@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Compass, Home, Newspaper, Tag, UserRound } from "lucide-react";
+import { Coffee, Compass, Home, Newspaper, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { isActive } from "./nav-items";
 
@@ -11,7 +11,8 @@ const items = [
   { href: "/perks", label: "Perks", icon: Tag },
   { href: "/businesses", label: "Discover", icon: Compass },
   { href: "/news", label: "News", icon: Newspaper },
-  { href: "/account", label: "Account", icon: UserRound },
+  // Account returns here when sign-in launches (Phase 3); it stays in the desktop header.
+  { href: "/the-hide", label: "The Hide", icon: Coffee },
 ] as const;
 
 /** App-style bottom navigation for small screens. */

@@ -4,7 +4,8 @@ export const primaryNav = [
   { href: "/businesses", label: "Businesses" },
   { href: "/news", label: "News & Stories" },
   { href: "/events", label: "Events" },
-  { href: "/about", label: "About Connect" },
+  { href: "/the-hide", label: "The Hide" },
+  { href: "/about", label: "About" },
 ] as const;
 
 export function isActive(pathname: string, href: string) {

@@ -9,7 +9,6 @@ const columns = [
       { href: "/businesses", label: "Business directory" },
       { href: "/news", label: "News & Stories" },
       { href: "/events", label: "Events" },
-      { href: "/the-hide", label: "The Hide café" },
     ],
   },
   {

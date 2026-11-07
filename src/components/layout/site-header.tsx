@@ -12,17 +12,17 @@ export function SiteHeader() {
         <div className="flex items-center gap-1.5">
           <Link
             href="/search"
-            className="inline-flex h-10 items-center gap-2 rounded-full px-3 text-sm font-medium text-stone-muted ring-1 ring-line transition-colors hover:text-ink hover:ring-ink/25 lg:w-44 lg:bg-white"
+            className="inline-flex h-10 items-center gap-2 rounded-full px-3 text-sm font-medium text-stone-muted ring-1 ring-line transition-colors hover:text-ink hover:ring-ink/25 lg:bg-white xl:w-44"
           >
             <Search aria-hidden className="size-4" />
-            <span className="sr-only lg:not-sr-only">Search</span>
+            <span className="sr-only xl:not-sr-only">Search</span>
           </Link>
           <Link
             href="/account"
-            className="hidden h-10 items-center gap-2 rounded-full bg-ink px-4 text-sm font-semibold text-white transition-colors hover:bg-ink-soft lg:inline-flex"
+            className="hidden h-10 items-center gap-2 rounded-full bg-ink px-3 text-sm xl:px-4 font-semibold text-white transition-colors hover:bg-ink-soft lg:inline-flex"
           >
             <UserRound aria-hidden className="size-4" />
-            Account
+            <span className="sr-only xl:not-sr-only">Account</span>
           </Link>
         </div>
       </div>
