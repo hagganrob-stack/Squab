@@ -97,6 +97,7 @@ export interface EventRow {
   image_url: string | null;
   start_datetime: string;
   end_datetime: string;
+  time_tbc: boolean;
   venue: string;
   address: string | null;
   registration_url: string | null;
@@ -199,6 +200,7 @@ export const mapEvent = (r: EventRow): CommunityEvent => ({
   imageUrl: opt(r.image_url),
   startsAt: r.start_datetime,
   endsAt: r.end_datetime,
+  timeTbc: r.time_tbc,
   venue: r.venue,
   address: opt(r.address),
   registrationUrl: opt(r.registration_url),

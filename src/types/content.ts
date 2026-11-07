@@ -165,6 +165,8 @@ export interface CommunityEvent {
   imageUrl?: string;
   startsAt: string;
   endsAt: string;
+  /** Times not yet announced: show the date only. */
+  timeTbc?: boolean;
   venue: string;
   address?: string;
   registrationUrl?: string;

@@ -36,7 +36,7 @@ export function Hero({ hero }: { hero: HomepageSettings["hero"] }) {
             <Media src="/images/partners/rise-and-reform-cover.webp" alt="Reformer Pilates at Rise and Reform" ratio="1/1" className="size-full aspect-auto!" sizes="(min-width: 1024px) 15vw, 33vw" />
           </div>
           <div className="col-span-2 row-span-3 col-start-5 row-start-4">
-            <Media src="/images/partners/the-hide-cafe-cover.webp" alt="Inside The Hide café at Squab Hall Farm" ratio="1/1" className="size-full aspect-auto!" sizes="(min-width: 1024px) 15vw, 33vw" />
+            <Media src="/images/squab/networking-room.webp" alt="A Squab networking morning" ratio="1/1" className="size-full aspect-auto!" sizes="(min-width: 1024px) 15vw, 33vw" />
           </div>
           <div className="col-span-4 row-span-2 row-start-5 flex items-center gap-4 rounded-[var(--radius-card)] bg-ink p-5 text-white">
             <span className="font-display text-4xl font-extrabold text-squab-400">Perks</span>

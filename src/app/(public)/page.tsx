@@ -15,7 +15,7 @@ import {
   getHomepageSettings,
   getStories,
 } from "@/lib/data";
-import { formatTimeRange, formatWeekday } from "@/lib/utils";
+import { eventTimes, formatWeekday } from "@/lib/utils";
 
 export default async function HomePage() {
   const [settings, offers, businesses, stories, events] = await Promise.all([
@@ -119,13 +119,13 @@ export default async function HomePage() {
                 <DateTile iso={nextEvent.startsAt} className="ring-0" />
                 <ul className="space-y-1.5 text-sm text-white/85">
                   <li className="flex items-center gap-2"><CalendarDays aria-hidden className="size-4 text-squab-300" />{formatWeekday(nextEvent.startsAt)}</li>
-                  <li className="flex items-center gap-2"><Clock aria-hidden className="size-4 text-squab-300" />{formatTimeRange(nextEvent.startsAt, nextEvent.endsAt)}</li>
+                  <li className="flex items-center gap-2"><Clock aria-hidden className="size-4 text-squab-300" />{eventTimes(nextEvent)}</li>
                   <li className="flex items-center gap-2"><MapPin aria-hidden className="size-4 text-squab-300" />{nextEvent.venue}</li>
                 </ul>
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={`/events/${nextEvent.slug}`} variant="onDark" size="lg">
-                  Event details &amp; registration <ArrowRight aria-hidden />
+                  {nextEvent.registrationUrl ? "Details &amp; registration" : "Event details"} <ArrowRight aria-hidden />
                 </ButtonLink>
                 <ButtonLink href="/events" variant="ghost" size="lg" className="text-white hover:bg-white/10">
                   All events

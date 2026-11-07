@@ -336,6 +336,7 @@ create table public.events (
   image_url text,
   start_datetime timestamptz not null,
   end_datetime timestamptz not null,
+  time_tbc boolean not null default false,
   venue text not null,
   address text,
   registration_url text check (registration_url is null or registration_url ~* '^https?://'),

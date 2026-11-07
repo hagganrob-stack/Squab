@@ -9,7 +9,7 @@ import { SampleBadge } from "@/components/ui/badge";
 import { Media } from "@/components/ui/media";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { getBusinesses, getEventBySlug, getEvents } from "@/lib/data";
-import { formatDate, formatTimeRange, formatWeekday } from "@/lib/utils";
+import { eventTimes, formatDate, formatWeekday } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const { upcoming, past } = await getEvents();
@@ -86,7 +86,7 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
           <div className="rounded-[var(--radius-panel)] bg-white p-6 shadow-lift ring-1 ring-line">
             <ul className="space-y-4">
               <li className="flex gap-3"><CalendarDays aria-hidden className="mt-0.5 size-5 text-squab-700" /><span><span className="block font-semibold">{formatWeekday(event.startsAt)}</span>{formatDate(event.startsAt)}</span></li>
-              <li className="flex gap-3"><Clock aria-hidden className="mt-0.5 size-5 text-squab-700" /><span>{formatTimeRange(event.startsAt, event.endsAt)}</span></li>
+              <li className="flex gap-3"><Clock aria-hidden className="mt-0.5 size-5 text-squab-700" /><span>{eventTimes(event)}</span></li>
               <li className="flex gap-3"><MapPin aria-hidden className="mt-0.5 size-5 text-squab-700" /><span><span className="block font-semibold">{event.venue}</span>{event.address}</span></li>
               {event.capacity && <li className="flex gap-3"><Users aria-hidden className="mt-0.5 size-5 text-squab-700" /><span>{event.capacity} places</span></li>}
             </ul>

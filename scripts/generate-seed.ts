@@ -132,6 +132,7 @@ sql += insert(
     image_url: e.imageUrl,
     start_datetime: e.startsAt,
     end_datetime: e.endsAt,
+    time_tbc: e.timeTbc ?? false,
     venue: e.venue,
     address: e.address,
     registration_url: e.registrationUrl,

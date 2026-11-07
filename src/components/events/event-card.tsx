@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Clock, MapPin } from "lucide-react";
 import { SampleBadge } from "@/components/ui/badge";
 import { Media } from "@/components/ui/media";
-import { cn, dateParts, formatTimeRange, formatWeekday } from "@/lib/utils";
+import { cn, dateParts, eventTimes, formatWeekday } from "@/lib/utils";
 import type { CommunityEvent } from "@/types/content";
 
 export function DateTile({ iso, className }: { iso: string; className?: string }) {
@@ -47,7 +47,7 @@ export function EventCard({ event, past = false, className }: { event: Community
         <p className="mt-2 line-clamp-2 text-[0.9375rem] leading-relaxed text-stone-muted">{event.summary}</p>
         <ul className="mt-auto space-y-1.5 pt-4 text-sm text-ink-soft">
           <li className="flex items-center gap-2">
-            <Clock aria-hidden className="size-4 text-stone-muted" /> {formatTimeRange(event.startsAt, event.endsAt)}
+            <Clock aria-hidden className="size-4 text-stone-muted" /> {eventTimes(event)}
           </li>
           <li className="flex items-center gap-2">
             <MapPin aria-hidden className="size-4 text-stone-muted" /> {event.venue}

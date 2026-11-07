@@ -46,6 +46,10 @@ export function formatWeekday(iso: string) {
   return weekdayFmt.format(new Date(iso));
 }
 
+export function eventTimes(e: { startsAt: string; endsAt: string; timeTbc?: boolean }) {
+  return e.timeTbc ? "Times to be confirmed" : formatTimeRange(e.startsAt, e.endsAt);
+}
+
 export function formatTimeRange(startIso: string, endIso: string) {
   return `${formatTime(startIso)} – ${formatTime(endIso)}`;
 }
