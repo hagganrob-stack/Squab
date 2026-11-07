@@ -17,7 +17,8 @@ const lit = (v: Value): string => {
   if (v === null || v === undefined) return "null";
   if (typeof v === "boolean") return v ? "true" : "false";
   if (typeof v === "number") return String(v);
-  if (Array.isArray(v)) return v.length ? `array[${v.map(lit).join(", ")}]::text[]` : "'{}'::text[]";
+  if (Array.isArray(v) && v.every((x) => typeof x === "string"))
+    return v.length ? `array[${v.map(lit).join(", ")}]::text[]` : "'{}'::text[]";
   if (typeof v === "object") return `${lit(JSON.stringify(v))}::jsonb`;
   return `'${v.replace(/'/g, "''")}'`;
 };
@@ -133,6 +134,8 @@ sql += insert(
     start_datetime: e.startsAt,
     end_datetime: e.endsAt,
     time_tbc: e.timeTbc ?? false,
+    schedule: e.schedule,
+    registration_label: e.registrationLabel,
     venue: e.venue,
     address: e.address,
     registration_url: e.registrationUrl,

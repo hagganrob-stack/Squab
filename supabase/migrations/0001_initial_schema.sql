@@ -337,9 +337,11 @@ create table public.events (
   start_datetime timestamptz not null,
   end_datetime timestamptz not null,
   time_tbc boolean not null default false,
+  schedule jsonb, -- [{day, time, note?}] for multi-day events
   venue text not null,
   address text,
   registration_url text check (registration_url is null or registration_url ~* '^https?://'),
+  registration_label text,
   contact_email citext,
   capacity int check (capacity is null or capacity > 0),
   fully_booked boolean not null default false,

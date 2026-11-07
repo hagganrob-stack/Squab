@@ -167,9 +167,13 @@ export interface CommunityEvent {
   endsAt: string;
   /** Times not yet announced: show the date only. */
   timeTbc?: boolean;
+  /** Day-by-day opening times for multi-day events. */
+  schedule?: { day: string; time: string; note?: string }[];
   venue: string;
   address?: string;
   registrationUrl?: string;
+  /** Button text for registrationUrl, e.g. "Festival details". Defaults to "Register to attend". */
+  registrationLabel?: string;
   contactEmail?: string;
   capacity?: number;
   fullyBooked: boolean;

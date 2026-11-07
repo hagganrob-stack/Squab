@@ -15,7 +15,7 @@ import {
   getHomepageSettings,
   getStories,
 } from "@/lib/data";
-import { eventTimes, formatWeekday } from "@/lib/utils";
+import { eventDayLabel, eventTimes } from "@/lib/utils";
 
 export default async function HomePage() {
   const [settings, offers, businesses, stories, events] = await Promise.all([
@@ -119,7 +119,7 @@ export default async function HomePage() {
               <div className="mt-6 flex items-center gap-4">
                 <DateTile iso={nextEvent.startsAt} className="ring-0" />
                 <ul className="space-y-1.5 text-sm text-white/85">
-                  <li className="flex items-center gap-2"><CalendarDays aria-hidden className="size-4 text-squab-300" />{formatWeekday(nextEvent.startsAt)}</li>
+                  <li className="flex items-center gap-2"><CalendarDays aria-hidden className="size-4 text-squab-300" />{eventDayLabel(nextEvent)}</li>
                   <li className="flex items-center gap-2"><Clock aria-hidden className="size-4 text-squab-300" />{eventTimes(nextEvent)}</li>
                   <li className="flex items-center gap-2"><MapPin aria-hidden className="size-4 text-squab-300" />{nextEvent.venue}</li>
                 </ul>

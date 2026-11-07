@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Clock, MapPin } from "lucide-react";
 import { SampleBadge } from "@/components/ui/badge";
 import { Media } from "@/components/ui/media";
-import { cn, dateParts, eventTimes, formatWeekday } from "@/lib/utils";
+import { cn, dateParts, eventDayLabel, eventTimes } from "@/lib/utils";
 import type { CommunityEvent } from "@/types/content";
 
 export function DateTile({ iso, className }: { iso: string; className?: string }) {
@@ -38,7 +38,7 @@ export function EventCard({ event, past = false, className }: { event: Community
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-xs font-bold uppercase tracking-[0.12em] text-stone-muted">{formatWeekday(event.startsAt)}</p>
+        <p className="text-xs font-bold uppercase tracking-[0.12em] text-stone-muted">{eventDayLabel(event)}</p>
         <h3 className="mt-1 text-xl font-bold leading-snug">
           <Link href={`/events/${event.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">
             {event.title}

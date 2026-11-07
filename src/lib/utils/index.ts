@@ -46,8 +46,23 @@ export function formatWeekday(iso: string) {
   return weekdayFmt.format(new Date(iso));
 }
 
+const dayKey = (iso: string) => new Intl.DateTimeFormat("en-GB", { dateStyle: "short", timeZone: "Europe/London" }).format(new Date(iso));
+
+export function isMultiDay(e: { startsAt: string; endsAt: string }) {
+  return dayKey(e.startsAt) !== dayKey(e.endsAt);
+}
+
 export function eventTimes(e: { startsAt: string; endsAt: string; timeTbc?: boolean }) {
-  return e.timeTbc ? "Times to be confirmed" : formatTimeRange(e.startsAt, e.endsAt);
+  if (e.timeTbc) return "Times to be confirmed";
+  if (isMultiDay(e)) return "Open daily — see opening times";
+  return formatTimeRange(e.startsAt, e.endsAt);
+}
+
+/** "Friday" for one-day events, "Sat 28 Nov – Sun 6 Dec" for multi-day ones. */
+export function eventDayLabel(e: { startsAt: string; endsAt: string }) {
+  if (!isMultiDay(e)) return formatWeekday(e.startsAt);
+  const f = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "Europe/London" });
+  return `${f.format(new Date(e.startsAt))} – ${f.format(new Date(e.endsAt))}`;
 }
 
 export function formatTimeRange(startIso: string, endIso: string) {

@@ -98,6 +98,8 @@ export interface EventRow {
   start_datetime: string;
   end_datetime: string;
   time_tbc: boolean;
+  schedule: CommunityEvent["schedule"] | null;
+  registration_label: string | null;
   venue: string;
   address: string | null;
   registration_url: string | null;
@@ -201,6 +203,8 @@ export const mapEvent = (r: EventRow): CommunityEvent => ({
   startsAt: r.start_datetime,
   endsAt: r.end_datetime,
   timeTbc: r.time_tbc,
+  schedule: opt(r.schedule),
+  registrationLabel: opt(r.registration_label),
   venue: r.venue,
   address: opt(r.address),
   registrationUrl: opt(r.registration_url),

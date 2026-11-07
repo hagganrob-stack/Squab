@@ -9,7 +9,7 @@ import { SampleBadge } from "@/components/ui/badge";
 import { Media } from "@/components/ui/media";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { getBusinesses, getEventBySlug, getEvents } from "@/lib/data";
-import { eventTimes, formatDate, formatWeekday } from "@/lib/utils";
+import { eventTimes, formatDate, formatWeekday, isMultiDay } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const { upcoming, past } = await getEvents();
@@ -74,6 +74,20 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
               </ul>
             </section>
           )}
+          {event.schedule && event.schedule.length > 0 && (
+            <section className="mt-10" aria-labelledby="opening-times">
+              <h2 id="opening-times" className="text-2xl font-extrabold">Opening times</h2>
+              <dl className="mt-4 divide-y divide-line overflow-hidden rounded-[var(--radius-card)] bg-white ring-1 ring-line">
+                {event.schedule.map((d) => (
+                  <div key={d.day} className="grid gap-1 px-5 py-3 sm:grid-cols-[10rem_7rem_1fr] sm:items-baseline">
+                    <dt className="font-semibold">{d.day}</dt>
+                    <dd className="font-semibold text-squab-700">{d.time}</dd>
+                    {d.note ? <dd className="text-sm text-stone-muted">{d.note}</dd> : <dd className="hidden sm:block" />}
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
           {event.whoShouldAttend && (
             <section className="mt-10 rounded-[var(--radius-card)] bg-squab-50 p-6" aria-labelledby="who">
               <h2 id="who" className="text-lg font-extrabold text-squab-800">Who should attend</h2>
@@ -85,7 +99,7 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-[var(--radius-panel)] bg-white p-6 shadow-lift ring-1 ring-line">
             <ul className="space-y-4">
-              <li className="flex gap-3"><CalendarDays aria-hidden className="mt-0.5 size-5 text-squab-700" /><span><span className="block font-semibold">{formatWeekday(event.startsAt)}</span>{formatDate(event.startsAt)}</span></li>
+              <li className="flex gap-3"><CalendarDays aria-hidden className="mt-0.5 size-5 text-squab-700" />{isMultiDay(event) ? (<span><span className="block font-semibold">{formatWeekday(event.startsAt)} {formatDate(event.startsAt).replace(/ \d{4}$/, "")} –</span>{formatWeekday(event.endsAt)} {formatDate(event.endsAt)}</span>) : (<span><span className="block font-semibold">{formatWeekday(event.startsAt)}</span>{formatDate(event.startsAt)}</span>)}</li>
               <li className="flex gap-3"><Clock aria-hidden className="mt-0.5 size-5 text-squab-700" /><span>{eventTimes(event)}</span></li>
               <li className="flex gap-3"><MapPin aria-hidden className="mt-0.5 size-5 text-squab-700" /><span><span className="block font-semibold">{event.venue}</span>{event.address}</span></li>
               {event.capacity && <li className="flex gap-3"><Users aria-hidden className="mt-0.5 size-5 text-squab-700" /><span>{event.capacity} places</span></li>}
@@ -98,7 +112,7 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
               ) : (
                 event.registrationUrl && (
                   <ButtonLink href={event.registrationUrl} external size="lg" className="w-full">
-                    Register to attend <ExternalLink aria-hidden />
+                    {event.registrationLabel ?? "Register to attend"} <ExternalLink aria-hidden />
                   </ButtonLink>
                 )
               )}
