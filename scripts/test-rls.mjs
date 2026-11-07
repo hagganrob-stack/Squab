@@ -37,21 +37,21 @@ const as = async (role, sub, sql) => {
 const check = (name, cond) => { console.log(`${cond ? "PASS" : "FAIL"}  ${name}`); if (!cond) process.exitCode = 1; };
 
 let r = await as("anon", null, "select count(*)::int n from offers");
-check("anon sees live offers (5 of 6; one expired by date? none) ", r.rows[0].n >= 5);
-r = await as("anon", null, "select email from business_directory where slug='forge-personal-training'");
+check("anon sees all 6 live offers", r.rows[0].n === 6);
+r = await as("anon", null, "select email from business_directory where slug='rise-and-reform'");
 check("anon reads directory view", r.rows.length === 1);
 let err = null;
 try { await as("anon", null, "select email from businesses limit 1"); } catch (e) { err = e; }
 check("anon cannot read base businesses table", !!err);
 
 // Hide email on one business, check masking
-await db.exec("update businesses set show_email=false where slug='the-golf-studio'");
-r = await as("anon", null, "select email from business_directory where slug='the-golf-studio'");
+await db.exec("update businesses set show_email=false where slug='proper-golfing'");
+r = await as("anon", null, "select email from business_directory where slug='proper-golfing'");
 check("hidden email masked in view", r.rows[0].email === null);
 
 // Expire an offer
-await db.exec("update offers set expiry_date = current_date - 1, start_date = current_date - 10 where slug='copper-still-15-percent-off'");
-r = await as("anon", null, "select count(*)::int n from offers where slug='copper-still-15-percent-off'");
+await db.exec("update offers set expiry_date = current_date - 1, start_date = current_date - 10 where slug='the-hide-cafe-hide20'");
+r = await as("anon", null, "select count(*)::int n from offers where slug='the-hide-cafe-hide20'");
 check("expired offer hidden from public", r.rows[0].n === 0);
 
 // Users
@@ -108,6 +108,6 @@ try { await as("authenticated", u1, `update businesses set featured = not featur
 check("member cannot feature own business", !!err);
 
 r = await as("anon", null, "select count(*)::int n from stories");
-check("anon reads published stories", r.rows[0].n === 5);
+check("anon reads published stories", r.rows[0].n === 3);
 r = await as("anon", null, "select count(*)::int n from newsletter_subscribers");
 check("anon cannot read subscribers", r.rows[0].n === 0);

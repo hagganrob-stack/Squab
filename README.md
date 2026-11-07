@@ -35,12 +35,16 @@ npm run dev                  # http://localhost:3000
 3. Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in
    `.env.local` and in the Vercel project settings.
 
-## Demo content
+## Content
 
-All businesses, offers, stories and events in `src/lib/demo/data.ts` are
-**fictional sample content**, flagged `is_demo` and shown with a "Sample"
-badge. Images are labelled placeholders until real Squab photography is supplied.
-Remove the sample rows before launch (`delete from … where is_demo`).
+`src/lib/demo/data.ts` holds the starter content. The six partners and their
+offer codes are **real**, carried over from the earlier Squab Perks prototype,
+with descriptions, logos and photos from each partner's own website
+(`public/images/partners/`). Squab facility photos and logo come from
+squabstorage.co.uk (`public/images/squab/`).
+
+Stories and events are **sample content**, flagged `is_demo` and shown with a
+"Sample" badge, until Squab writes its own (`delete from … where is_demo`).
 
 ## Project layout
 

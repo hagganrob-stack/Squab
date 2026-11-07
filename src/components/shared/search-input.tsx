@@ -49,30 +49,6 @@ export function SearchInput({
   );
 }
 
-export function FilterChip({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={cn(
-        "inline-flex h-10 shrink-0 items-center rounded-full px-4 text-sm font-semibold transition-colors",
-        active ? "bg-ink text-white" : "bg-white text-ink-soft ring-1 ring-line hover:ring-ink/30",
-      )}
-    >
-      {children}
-    </button>
-  );
-}
-
 /** Keep filter state in the URL without a server round trip. */
 export function replaceQuery(params: Record<string, string | null>) {
   const url = new URL(window.location.href);

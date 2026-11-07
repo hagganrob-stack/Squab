@@ -76,10 +76,8 @@ Full DDL + RLS: `supabase/migrations/0001_initial_schema.sql`.
 ```
 auth.users 1─1 profiles (role: customer | business | admin | super_admin)
 profiles   *─* businesses           via business_members (permission_level: owner | editor, trusted flag)
-businesses *─* categories           via business_categories   (categories.type = 'business')
 offers     *─1 businesses
-offers     *─* categories           via offer_categories      (categories.type = 'perk')
-stories    *─1 categories           (categories.type = 'story')
+stories    *─1 categories           (editorial categories only)
 stories    *─1 businesses (optional related_business_id — used by spotlights)
 events     *─* businesses           via event_businesses (related businesses)
 saved_items (user_id, item_type ∈ offer|business|story, item_id)
@@ -93,7 +91,10 @@ content_revisions (pending profile changes from non-trusted business users)
 
 Additions vs. the brief's suggested tables (all needed by the spec):
 
-- `offer_categories` — offers can belong to several categories (§5.2).
+- **No perk/business categories.** Squab expects at most ~20 partner
+  businesses, so a category taxonomy would sit mostly empty. Perks and the
+  directory use search plus a short free-text `kind` label on each business
+  (e.g. "Reformer Pilates"). Stories keep three editorial categories.
 - `event_businesses` — "related businesses" on event pages (§9.2).
 - `business_analytics` — profile views and website clicks for dashboards (§7.2).
 - `content_revisions` — "submit profile changes for approval" (§6.3).
@@ -130,20 +131,18 @@ add the keys to the Vercel project settings.
 
 Tokens live in `src/app/globals.css`.
 
-- **Brand orange** `squab-500` — currently a *provisional* value. It must be
-  replaced with the hex sampled from the official logo artwork (one-line change).
-  For text and filled buttons we use `squab-700`, which passes WCAG AA (≥4.5:1)
-  with white; the brighter `squab-500` is reserved for accents, large display
-  type and decorative fills.
-- **Neutrals**: `ink` (near-black charcoal) for type, `paper` (warm off-white)
+- **Brand amber** `squab-500` `#F8A842` and **slate** `ink` `#2D3748`, from the
+  Squab Storage logo and the earlier Squab Perks prototype. White on amber fails
+  contrast (2:1), so amber surfaces always carry slate text (6.1:1) and
+  `squab-700` `#965607` is used for orange text on light backgrounds (5.8:1).
+- **Neutrals**: `ink` (slate) for type, `paper` (warm off-white)
   page background, white surfaces, `stone` muted greys, `line` hairlines.
-- **Category accents**: six muted tints (sage, sky, plum, sand, rose, teal) used
-  only for category chips and placeholders — never for CTAs.
+- **Category accents**: muted tints used only for story category chips.
 - **Type**: Manrope 700/800 headings with tight tracking; Inter 400–600 body.
   Fluid display sizes via `clamp()`. Article body at 18–19px, 68ch measure.
 - **Shape**: radius 12px (controls), 20px (cards), 28px (feature panels); soft
   two-layer shadow on hover only; hairline borders where separation is needed.
-- **Imagery**: fixed ratios — offers 4:3, business covers 16:9, stories 3:2/16:9,
+- **Imagery**: fixed ratios — offers 16:9, business covers 16:9, stories 3:2/16:9,
   events 16:9, logos 1:1. Until real photography exists, `<MediaPlaceholder>`
   renders a clearly-labelled, on-brand placeholder at the correct ratio.
 - **Motion**: 150–250 ms transforms/opacity only; disabled under
@@ -174,10 +173,11 @@ related but distinct.
 
 ## 6. Risks & decisions needed from Squab
 
-1. **Brand assets** — need the official logo (SVG) and exact orange; real
-   photography of facilities and tenants. Placeholders are in place until then.
-2. **Facilities** — which Squab sites exist? The `facility` field is free text
-   for now; Phase 2 can promote it to a `facilities` table for multi-location.
+1. **Brand assets** — the logo in use is the PNG from squabstorage.co.uk; an
+   SVG master would be sharper. Partner logos and photos were taken from each
+   partner's own website — confirm they're happy for them to be used.
+2. **Locations** — businesses have a free-text `location`; promote to a
+   `facilities` table only if multi-site filtering is ever needed.
 3. **Who can see private contact details?** Business emails/phones on public
    profiles are opt-in per field (`show_email`, `show_phone`).
 4. **Email domain & sender** for Resend, and who owns the newsletter list

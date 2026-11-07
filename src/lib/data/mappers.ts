@@ -13,7 +13,6 @@ export interface CategoryRow {
   id: string;
   name: string;
   slug: string;
-  type: Category["type"];
   description: string | null;
   tone: Category["tone"] | null;
 }
@@ -24,9 +23,11 @@ export interface BusinessRow {
   slug: string;
   tagline: string | null;
   description: string | null;
+  kind: string | null;
   services: string[] | null;
   differentiator: string | null;
   logo_url: string | null;
+  logo_background: "light" | "dark" | null;
   cover_image_url: string | null;
   email: string | null;
   phone: string | null;
@@ -34,12 +35,11 @@ export interface BusinessRow {
   show_phone: boolean;
   website: string | null;
   social_links: Business["social"] | null;
-  facility: string | null;
+  location: string | null;
   squab_connection: string | null;
   status: Business["status"];
   featured: boolean;
   is_demo: boolean;
-  business_categories?: { category_id: string }[];
 }
 
 export interface OfferRow {
@@ -66,7 +66,6 @@ export interface OfferRow {
   featured: boolean;
   created_at: string;
   is_demo: boolean;
-  offer_categories?: { category_id: string }[];
 }
 
 export interface StoryRow {
@@ -116,7 +115,7 @@ export const mapCategory = (r: CategoryRow): Category => ({
   id: r.id,
   name: r.name,
   slug: r.slug,
-  type: r.type,
+  type: "story",
   description: opt(r.description),
   tone: r.tone ?? "orange",
 });
@@ -127,18 +126,19 @@ export const mapBusiness = (r: BusinessRow): Business => ({
   slug: r.slug,
   tagline: r.tagline ?? "",
   description: r.description ?? "",
+  kind: r.kind ?? "",
   services: r.services ?? [],
   differentiator: opt(r.differentiator),
   logoUrl: opt(r.logo_url),
+  logoBackground: opt(r.logo_background),
   coverImageUrl: opt(r.cover_image_url),
   // Contact details are only exposed when the business has opted in.
   email: r.show_email ? opt(r.email) : undefined,
   phone: r.show_phone ? opt(r.phone) : undefined,
   website: opt(r.website),
   social: r.social_links ?? {},
-  facility: opt(r.facility),
+  location: opt(r.location),
   squabConnection: opt(r.squab_connection),
-  categoryIds: (r.business_categories ?? []).map((c) => c.category_id),
   featured: r.featured,
   status: r.status,
   isDemo: r.is_demo,
@@ -166,7 +166,6 @@ export const mapOffer = (r: OfferRow): Offer => ({
   expiryDate: opt(r.expiry_date),
   status: r.status,
   featured: r.featured,
-  categoryIds: (r.offer_categories ?? []).map((c) => c.category_id),
   createdAt: r.created_at,
   isDemo: r.is_demo,
 });

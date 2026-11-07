@@ -2,8 +2,6 @@ import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
 import type {
   Business,
-  Category,
-  CategoryType,
   CommunityEvent,
   OfferWithBusiness,
   StoryWithCategory,
@@ -20,36 +18,20 @@ import {
 
 export { loadHomepageSettings as getHomepageSettings };
 
-/* ---------- Categories ---------- */
-
-export async function getCategories(type: CategoryType): Promise<Category[]> {
-  return (await loadCategories()).filter((c) => c.type === type);
-}
-
 /* ---------- Offers ---------- */
 
 export async function getOffers(): Promise<OfferWithBusiness[]> {
-  const [offers, businesses, categories] = await Promise.all([
-    loadOffers(),
-    loadBusinesses(),
-    loadCategories(),
-  ]);
+  const [offers, businesses] = await Promise.all([loadOffers(), loadBusinesses()]);
   const byId = new Map(businesses.map((b) => [b.id, b]));
-  const catById = new Map(categories.map((c) => [c.id, c]));
   return offers.flatMap((o) => {
     const b = byId.get(o.businessId);
     if (!b) return []; // business suspended/unpublished: hide its offers
-    return [
-      {
-        ...o,
-        business: { id: b.id, name: b.name, slug: b.slug, logoUrl: b.logoUrl, facility: b.facility },
-        categories: o.categoryIds.map((id) => catById.get(id)).filter((c): c is Category => !!c),
-      },
-    ];
+    const { id, name, slug, kind, logoUrl, logoBackground, coverImageUrl, location, website } = b;
+    return [{ ...o, business: { id, name, slug, kind, logoUrl, logoBackground, coverImageUrl, location, website } }];
   });
 }
 
-export async function getFeaturedOffers(limit = 4) {
+export async function getFeaturedOffers(limit = 6) {
   const all = await getOffers();
   const featured = all.filter((o) => o.featured);
   return (featured.length ? featured : all).slice(0, limit);
@@ -63,31 +45,18 @@ export async function getOffersForBusiness(businessId: string) {
   return (await getOffers()).filter((o) => o.businessId === businessId);
 }
 
-export async function getRelatedOffers(offer: OfferWithBusiness, limit = 3) {
-  const all = await getOffers();
-  const cats = new Set(offer.categoryIds);
-  return all
-    .filter((o) => o.id !== offer.id)
-    .map((o) => ({ o, score: o.categoryIds.filter((c) => cats.has(c)).length }))
-    .sort((x, y) => y.score - x.score)
-    .slice(0, limit)
-    .map((x) => x.o);
+export async function getOtherOffers(offer: OfferWithBusiness, limit = 3) {
+  return (await getOffers()).filter((o) => o.id !== offer.id).slice(0, limit);
 }
 
 /* ---------- Businesses ---------- */
 
-export type BusinessWithCategories = Business & { categories: Category[]; offerCount: number };
+export type BusinessWithOffers = Business & { offerCount: number };
 
-export async function getBusinesses(): Promise<BusinessWithCategories[]> {
-  const [businesses, categories, offers] = await Promise.all([
-    loadBusinesses(),
-    loadCategories(),
-    loadOffers(),
-  ]);
-  const catById = new Map(categories.map((c) => [c.id, c]));
+export async function getBusinesses(): Promise<BusinessWithOffers[]> {
+  const [businesses, offers] = await Promise.all([loadBusinesses(), loadOffers()]);
   return businesses.map((b) => ({
     ...b,
-    categories: b.categoryIds.map((id) => catById.get(id)).filter((c): c is Category => !!c),
     offerCount: offers.filter((o) => o.businessId === b.id).length,
   }));
 }
@@ -100,12 +69,8 @@ export async function getBusinessById(id: string) {
   return (await getBusinesses()).find((b) => b.id === id) ?? null;
 }
 
-export async function getRelatedBusinesses(business: Business, limit = 3) {
-  const all = await getBusinesses();
-  const cats = new Set(business.categoryIds);
-  return all
-    .filter((b) => b.id !== business.id && b.categoryIds.some((c) => cats.has(c)))
-    .slice(0, limit);
+export async function getOtherBusinesses(business: Business, limit = 3) {
+  return (await getBusinesses()).filter((b) => b.id !== business.id).slice(0, limit);
 }
 
 /* ---------- Stories ---------- */

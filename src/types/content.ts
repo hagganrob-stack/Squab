@@ -3,7 +3,8 @@
  * Field names are camelCase; the Supabase mapping lives in src/lib/data/mappers.ts.
  */
 
-export type CategoryType = "perk" | "business" | "story";
+/** Only editorial content is categorised; with ~20 partners, perks and businesses are found by search. */
+export type CategoryType = "story";
 
 export type CategoryTone = "sage" | "sky" | "plum" | "sand" | "rose" | "teal" | "orange";
 
@@ -32,17 +33,21 @@ export interface Business {
   slug: string;
   tagline: string;
   description: string;
+  /** Short plain label shown on cards, e.g. "Reformer Pilates". Replaces a category taxonomy. */
+  kind: string;
   services: string[];
   differentiator?: string;
   logoUrl?: string;
+  /** Some logos are white and need a dark tile behind them. */
+  logoBackground?: "light" | "dark";
   coverImageUrl?: string;
   email?: string;
   phone?: string;
   website?: string;
   social: SocialLinks;
-  facility?: string;
+  /** Where the business is, e.g. "Squab Hall, Leamington Spa". */
+  location?: string;
   squabConnection?: string;
-  categoryIds: string[];
   featured: boolean;
   status: BusinessStatus;
   isDemo: boolean;
@@ -94,7 +99,6 @@ export interface Offer {
   expiryDate?: string;
   status: OfferStatus;
   featured: boolean;
-  categoryIds: string[];
   createdAt: string;
   isDemo: boolean;
   /** Computed when loaded: added in the last 30 days. */
@@ -191,8 +195,7 @@ export interface HomepageSettings {
 
 /** An offer joined with the business that runs it — what most UI needs. */
 export interface OfferWithBusiness extends Offer {
-  business: Pick<Business, "id" | "name" | "slug" | "logoUrl" | "facility">;
-  categories: Category[];
+  business: Pick<Business, "id" | "name" | "slug" | "kind" | "logoUrl" | "logoBackground" | "coverImageUrl" | "location" | "website">;
 }
 
 export interface StoryWithCategory extends Story {

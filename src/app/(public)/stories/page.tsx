@@ -19,10 +19,6 @@ export default async function StoriesPage() {
   const [stories, events] = await Promise.all([getStories(), getEvents()]);
   const lead = stories.find((s) => s.featured) ?? stories[0];
   const rest = stories.filter((s) => s.id !== lead?.id);
-  const bySlug = (...slugs: string[]) => stories.filter((s) => slugs.includes(s.category.slug));
-  const community = bySlug("meet-the-community", "business-spotlight", "community");
-  const insights = bySlug("business-insights");
-  const fromSquab = bySlug("squab-news", "behind-the-scenes");
 
   if (!lead) {
     return (
@@ -63,24 +59,17 @@ export default async function StoriesPage() {
         </article>
       </section>
 
+      {rest.length > 0 && (
       <Section aria-labelledby="latest">
         <SectionHeader id="latest" title="Latest stories" />
         <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {rest.slice(0, 6).map((s) => <StoryCard key={s.id} story={s} />)}
         </div>
       </Section>
-
-      {community.length > 0 && (
-        <Section aria-labelledby="meet" className="bg-white">
-          <SectionHeader id="meet" eyebrow="Meet the community" title="The faces behind the units" description="Tenant and business spotlights from across Squab." />
-          <div className="grid gap-x-6 gap-y-12 md:grid-cols-2">
-            {community.slice(0, 2).map((s) => <StoryCard key={s.id} story={s} ratio="16/9" size="lg" />)}
-          </div>
-        </Section>
       )}
 
       {events.upcoming.length > 0 && (
-        <Section aria-labelledby="happening">
+        <Section aria-labelledby="happening" className="border-t border-line bg-white">
           <SectionHeader id="happening" eyebrow="What's happening" title="Coming up at Squab" action={{ label: "All events", href: "/events" }} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {events.upcoming.slice(0, 3).map((e) => <EventCard key={e.id} event={e} />)}
@@ -88,22 +77,6 @@ export default async function StoriesPage() {
         </Section>
       )}
 
-      <Section aria-labelledby="insights-from-squab" className="border-t border-line bg-white">
-        <div className="grid gap-14 lg:grid-cols-2">
-          <div>
-            <SectionHeader id="insights-from-squab" eyebrow="Business insights" title="Useful know-how" className="sm:mb-8" />
-            <div className="grid gap-10">
-              {insights.length ? insights.slice(0, 2).map((s) => <StoryCard key={s.id} story={s} ratio="21/9" size="sm" />) : <p className="text-stone-muted">Insights from tenant businesses are coming soon.</p>}
-            </div>
-          </div>
-          <div>
-            <SectionHeader eyebrow="From Squab" title="News & updates" className="sm:mb-8" />
-            <div className="grid gap-10">
-              {fromSquab.length ? fromSquab.slice(0, 2).map((s) => <StoryCard key={s.id} story={s} ratio="21/9" size="sm" />) : <p className="text-stone-muted">Squab news will appear here.</p>}
-            </div>
-          </div>
-        </div>
-      </Section>
     </>
   );
 }

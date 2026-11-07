@@ -20,7 +20,7 @@ import { formatTimeRange, formatWeekday } from "@/lib/utils";
 export default async function HomePage() {
   const [settings, offers, businesses, stories, events] = await Promise.all([
     getHomepageSettings(),
-    getFeaturedOffers(4),
+    getFeaturedOffers(6),
     getBusinesses(),
     getStories(),
     getEvents(),
@@ -39,13 +39,13 @@ export default async function HomePage() {
           id="perks-heading"
           eyebrow="Squab Perks"
           title="A little extra from your Squab community"
-          description="Exclusive offers, discounts and services from the businesses that make up Squab."
+          description="Exclusive offers from local businesses — show your code at the business or use it when you book."
           action={{ label: "View all perks", href: "/perks" }}
         />
         {offers.length ? (
-          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scrollbar-none sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
+          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scrollbar-none sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-3">
             {offers.map((o, i) => (
-              <OfferCard key={o.id} offer={o} priority={i < 2} className="w-[82%] shrink-0 snap-start sm:w-auto" />
+              <OfferCard key={o.id} offer={o} priority={i < 3} className="w-[82%] shrink-0 snap-start sm:w-auto" />
             ))}
           </div>
         ) : (
@@ -59,17 +59,17 @@ export default async function HomePage() {
           id="community-heading"
           eyebrow="Meet the community"
           title="The businesses around you"
-          description="From trades and workshops to studios and producers — discover who's based at Squab."
+          description="Pilates, golf, swimming, coffee, training and more — discover the businesses in the Squab community."
           action={{ label: "Discover all businesses", href: "/businesses" }}
         />
-        <ul className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 scrollbar-none sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
+        <ul className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 scrollbar-none sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-3">
           {community.map((b) => (
             <li key={b.id} className="w-[70%] shrink-0 snap-start sm:w-auto">
               <Link
                 href={`/businesses/${b.slug}`}
                 className="group flex h-full items-start gap-4 rounded-[var(--radius-card)] bg-paper p-4 ring-1 ring-line/70 transition-shadow hover:shadow-lift"
               >
-                <Logo src={b.logoUrl} name={b.name} size={52} />
+                <Logo src={b.logoUrl} name={b.name} size={52} dark={b.logoBackground === "dark"} />
                 <span className="min-w-0">
                   <span className="flex items-center gap-2">
                     <span className="truncate font-display font-bold group-hover:text-squab-700">{b.name}</span>
@@ -138,12 +138,12 @@ export default async function HomePage() {
 
       {/* Community CTA */}
       <Section aria-labelledby="join-heading" className="pt-0 sm:pt-0">
-        <div className="relative overflow-hidden rounded-[var(--radius-panel)] bg-squab-700 px-7 py-12 text-white sm:px-12 sm:py-16">
-          <div aria-hidden className="absolute -bottom-24 -right-16 size-80 rounded-full bg-squab-500/60 blur-2xl" />
+        <div className="relative overflow-hidden rounded-[var(--radius-panel)] bg-squab-500 px-7 py-12 text-ink sm:px-12 sm:py-16">
+          <div aria-hidden className="absolute -bottom-24 -right-16 size-80 rounded-full bg-squab-300/70 blur-2xl" />
           <div className="relative max-w-2xl">
             <h2 id="join-heading" className="text-headline font-extrabold">{settings.community.headline}</h2>
-            <p className="mt-4 text-lg leading-relaxed text-white/85">{settings.community.body}</p>
-            <ButtonLink href={settings.community.cta.href} variant="onDark" size="lg" className="mt-8">
+            <p className="mt-4 text-lg leading-relaxed text-ink/85">{settings.community.body}</p>
+            <ButtonLink href={settings.community.cta.href} variant="dark" size="lg" className="mt-8">
               {settings.community.cta.label} <ArrowRight aria-hidden />
             </ButtonLink>
           </div>

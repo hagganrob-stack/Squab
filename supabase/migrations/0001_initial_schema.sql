@@ -10,7 +10,6 @@ create extension if not exists citext;
 -- Enums
 -- ---------------------------------------------------------------------------
 create type public.user_role as enum ('customer', 'business', 'admin', 'super_admin');
-create type public.category_type as enum ('perk', 'business', 'story');
 create type public.category_tone as enum ('sage', 'sky', 'plum', 'sand', 'rose', 'teal', 'orange');
 create type public.business_status as enum ('pending', 'active', 'suspended', 'declined');
 create type public.member_permission as enum ('owner', 'editor');
@@ -107,18 +106,16 @@ create trigger profiles_guard_role before update on public.profiles
   for each row execute function public.guard_profile_role();
 
 -- ---------------------------------------------------------------------------
--- Categories
+-- Categories (editorial only — perks and businesses are few enough to search)
 -- ---------------------------------------------------------------------------
 create table public.categories (
   id uuid primary key default gen_random_uuid(),
   name text not null,
-  slug text not null,
-  type public.category_type not null,
+  slug text not null unique,
   description text,
   tone public.category_tone not null default 'orange',
   display_order int not null default 0,
-  created_at timestamptz not null default now(),
-  unique (type, slug)
+  created_at timestamptz not null default now()
 );
 
 -- ---------------------------------------------------------------------------
@@ -130,9 +127,11 @@ create table public.businesses (
   slug text not null unique check (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'),
   tagline text,
   description text,
+  kind text, -- short label, e.g. "Reformer Pilates"
   services text[] not null default '{}',
   differentiator text,
   logo_url text,
+  logo_background text not null default 'light' check (logo_background in ('light', 'dark')),
   cover_image_url text,
   email citext,
   phone text,
@@ -140,7 +139,7 @@ create table public.businesses (
   show_phone boolean not null default false,
   website text check (website is null or website ~* '^https?://'),
   social_links jsonb not null default '{}'::jsonb,
-  facility text,
+  location text,
   squab_connection text,
   status public.business_status not null default 'pending',
   featured boolean not null default false,
@@ -172,12 +171,6 @@ create or replace function public.is_business_member(bid uuid) returns boolean
 language sql stable security definer set search_path = public as $$
   select exists (select 1 from public.business_members where business_id = bid and user_id = auth.uid())
 $$;
-
-create table public.business_categories (
-  business_id uuid not null references public.businesses (id) on delete cascade,
-  category_id uuid not null references public.categories (id) on delete cascade,
-  primary key (business_id, category_id)
-);
 
 -- Business access requests (public registration form → admin review)
 create table public.business_applications (
@@ -253,12 +246,6 @@ create index offers_business_idx on public.offers (business_id);
 create index offers_live_idx on public.offers (status, start_date, expiry_date);
 create trigger offers_updated_at before update on public.offers
   for each row execute function public.set_updated_at();
-
-create table public.offer_categories (
-  offer_id uuid not null references public.offers (id) on delete cascade,
-  category_id uuid not null references public.categories (id) on delete cascade,
-  primary key (offer_id, category_id)
-);
 
 create or replace function public.offer_is_live(o public.offers) returns boolean
 language sql stable as $$
@@ -478,11 +465,9 @@ alter table public.profiles enable row level security;
 alter table public.categories enable row level security;
 alter table public.businesses enable row level security;
 alter table public.business_members enable row level security;
-alter table public.business_categories enable row level security;
 alter table public.business_applications enable row level security;
 alter table public.content_revisions enable row level security;
 alter table public.offers enable row level security;
-alter table public.offer_categories enable row level security;
 alter table public.stories enable row level security;
 alter table public.events enable row level security;
 alter table public.event_businesses enable row level security;
@@ -535,10 +520,10 @@ $$;
 -- security_invoker) so it can mask private contact columns; its WHERE clause
 -- is the access rule.
 create view public.business_directory with (security_barrier = true) as
-  select id, name, slug, tagline, description, services, differentiator, logo_url, cover_image_url,
+  select id, name, slug, tagline, description, kind, services, differentiator, logo_url, logo_background, cover_image_url,
          case when show_email then email end as email,
          case when show_phone then phone end as phone,
-         show_email, show_phone, website, social_links, facility, squab_connection,
+         show_email, show_phone, website, social_links, location, squab_connection,
          status, featured, is_demo, created_at, updated_at
   from public.businesses
   where status = 'active';
@@ -547,11 +532,6 @@ grant select on public.business_directory to anon, authenticated;
 
 create policy business_members_read on public.business_members for select using (user_id = auth.uid() or public.is_admin());
 create policy business_members_admin on public.business_members for all using (public.is_admin()) with check (public.is_admin());
-
-create policy business_categories_read on public.business_categories for select using (true);
-create policy business_categories_member on public.business_categories for all
-  using (public.is_business_member(business_id) or public.is_admin())
-  with check (public.is_business_member(business_id) or public.is_admin());
 
 create policy applications_insert on public.business_applications for insert with check (user_id is null or user_id = auth.uid());
 create policy applications_read on public.business_applications for select using (user_id = auth.uid() or public.is_admin());
@@ -571,11 +551,6 @@ create policy offers_member_insert on public.offers for insert with check (publi
 create policy offers_member_update on public.offers for update
   using (public.is_business_member(business_id)) with check (public.is_business_member(business_id));
 create policy offers_admin on public.offers for all using (public.is_admin()) with check (public.is_admin());
-
-create policy offer_categories_read on public.offer_categories for select using (true);
-create policy offer_categories_member on public.offer_categories for all
-  using (public.is_admin() or exists (select 1 from public.offers o where o.id = offer_id and public.is_business_member(o.business_id)))
-  with check (public.is_admin() or exists (select 1 from public.offers o where o.id = offer_id and public.is_business_member(o.business_id)));
 
 -- Stories & events: public sees published; admins manage.
 create policy stories_public_read on public.stories for select using (status = 'published' and published_at <= now());

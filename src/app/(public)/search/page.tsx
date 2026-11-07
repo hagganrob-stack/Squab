@@ -8,8 +8,8 @@ export const metadata: Metadata = { title: "Search", robots: { index: false } };
 export default async function SearchPage() {
   const [offers, businesses, stories, events] = await Promise.all([getOffers(), getBusinesses(), getStories(), getEvents()]);
   const items: SearchItem[] = [
-    ...offers.map((o) => ({ kind: "Perk" as const, title: `${o.rewardLabel} · ${o.title}`, subtitle: o.business.name, href: `/perks/${o.slug}`, keywords: `${o.shortDescription} ${o.categories.map((c) => c.name).join(" ")}` })),
-    ...businesses.map((b) => ({ kind: "Business" as const, title: b.name, subtitle: b.tagline, href: `/businesses/${b.slug}`, keywords: `${b.description} ${b.services.join(" ")} ${b.categories.map((c) => c.name).join(" ")}` })),
+    ...offers.map((o) => ({ kind: "Perk" as const, title: `${o.rewardLabel} · ${o.title}`, subtitle: o.business.name, href: `/perks/${o.slug}`, keywords: `${o.shortDescription} ${o.business.kind}` })),
+    ...businesses.map((b) => ({ kind: "Business" as const, title: b.name, subtitle: b.tagline, href: `/businesses/${b.slug}`, keywords: `${b.kind} ${b.description} ${b.services.join(" ")}` })),
     ...stories.map((s) => ({ kind: "Story" as const, title: s.title, subtitle: s.category.name, href: `/stories/${s.slug}`, keywords: s.standfirst })),
     ...events.upcoming.map((e) => ({ kind: "Event" as const, title: e.title, subtitle: e.venue, href: `/events/${e.slug}`, keywords: e.summary })),
   ];

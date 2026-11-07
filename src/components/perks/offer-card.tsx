@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { ArrowRight, CalendarClock } from "lucide-react";
-import { CategoryChip, RewardLabel, SampleBadge } from "@/components/ui/badge";
+import { RewardLabel, SampleBadge } from "@/components/ui/badge";
 import { Logo, Media } from "@/components/ui/media";
 import { cn, formatShortDate } from "@/lib/utils";
 import type { OfferWithBusiness } from "@/types/content";
 
 export function OfferCard({ offer, className, priority }: { offer: OfferWithBusiness; className?: string; priority?: boolean }) {
-  const primary = offer.categories[0];
+  const { business } = offer;
   return (
     <article
       className={cn(
@@ -16,32 +16,32 @@ export function OfferCard({ offer, className, priority }: { offer: OfferWithBusi
     >
       <div className="relative">
         <Media
-          src={offer.imageUrl}
+          src={offer.imageUrl ?? business.coverImageUrl}
           alt=""
-          ratio="4/3"
-          tone={primary?.tone}
+          ratio="16/9"
           rounded={false}
           priority={priority}
-          label={`${offer.business.name}`}
+          fallbackLogo={business.logoUrl}
+          fallbackLogoDark={business.logoBackground === "dark"}
+          label={business.name}
         />
-        <div className="absolute left-3 top-3 flex gap-2">
-          <RewardLabel>{offer.rewardLabel}</RewardLabel>
-        </div>
+        <RewardLabel className="absolute left-3 top-3">{offer.rewardLabel}</RewardLabel>
         {offer.isDemo && <SampleBadge className="absolute right-3 top-3" />}
       </div>
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-3 flex items-center gap-2.5">
-          <Logo src={offer.business.logoUrl} name={offer.business.name} size={32} className="rounded-lg" />
-          <p className="truncate text-xs font-bold uppercase tracking-[0.12em] text-stone-muted">{offer.business.name}</p>
+          <Logo src={business.logoUrl} name={business.name} size={36} dark={business.logoBackground === "dark"} className="rounded-lg" />
+          <div className="min-w-0">
+            <p className="truncate text-sm font-bold text-ink">{business.name}</p>
+            {business.kind && <p className="truncate text-xs text-stone-muted">{business.kind}</p>}
+          </div>
         </div>
         <h3 className="text-xl font-bold leading-snug">
           <Link href={`/perks/${offer.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">
             {offer.title}
           </Link>
         </h3>
-        <p className="mt-2 line-clamp-2 text-[0.9375rem] leading-relaxed text-stone-muted">{offer.shortDescription}</p>
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-5">
-          {primary && <CategoryChip tone={primary.tone}>{primary.name}</CategoryChip>}
           {offer.expiryDate && (
             <span className="inline-flex items-center gap-1 text-xs text-stone-muted">
               <CalendarClock aria-hidden className="size-3.5" />

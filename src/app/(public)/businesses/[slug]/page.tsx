@@ -8,10 +8,10 @@ import { BackLink } from "@/components/shared/breadcrumb";
 import { JsonLd } from "@/components/shared/json-ld";
 import { TrackView } from "@/components/shared/track-view";
 import { ButtonLink } from "@/components/ui/button";
-import { CategoryChip, SampleBadge } from "@/components/ui/badge";
+import { SampleBadge } from "@/components/ui/badge";
 import { Logo, Media } from "@/components/ui/media";
 import { Section, SectionHeader } from "@/components/ui/section";
-import { getBusinessBySlug, getBusinesses, getOffersForBusiness, getRelatedBusinesses, getStories } from "@/lib/data";
+import { getBusinessBySlug, getBusinesses, getOffersForBusiness, getOtherBusinesses, getStories } from "@/lib/data";
 import { siteUrl, stripProtocol } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -38,11 +38,11 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
   if (!business) notFound();
   const [offers, related, stories] = await Promise.all([
     getOffersForBusiness(business.id),
-    getRelatedBusinesses(business),
+    getOtherBusinesses(business),
     getStories(),
   ]);
   const features = stories.filter((s) => s.relatedBusinessId === business.id);
-  const primary = business.categories[0];
+  const dark = business.logoBackground === "dark";
 
   return (
     <>
@@ -67,20 +67,18 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
       {/* Identity */}
       <header className="container-page pt-6">
         <div className="relative">
-          <Media src={business.coverImageUrl} alt={`${business.name} cover photo`} ratio="21/9" tone={primary?.tone} priority sizes="100vw" label="Cover photo" className="rounded-[var(--radius-panel)] max-sm:aspect-video!" />
+          <Media src={business.coverImageUrl} alt={`${business.name} cover photo`} ratio="21/9" fallbackLogo={business.logoUrl} fallbackLogoDark={dark} priority sizes="100vw" label="Cover photo" className="rounded-[var(--radius-panel)] max-sm:aspect-video!" />
           {business.isDemo && <SampleBadge className="absolute right-4 top-4" />}
         </div>
         <div className="flex flex-col gap-6 px-1 sm:flex-row sm:items-end sm:justify-between sm:px-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
-            <Logo src={business.logoUrl} name={business.name} size={104} className="-mt-12 rounded-[1.4rem] ring-[6px] ring-paper" />
+            <Logo src={business.logoUrl} name={business.name} size={104} dark={dark} className="-mt-12 rounded-[1.4rem] ring-[6px] ring-paper" />
             <div className="pb-1">
               <h1 className="text-headline font-extrabold sm:text-5xl">{business.name}</h1>
               <p className="mt-2 text-lg text-stone-muted">{business.tagline}</p>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2 pb-1">
-            {business.categories.map((c) => <CategoryChip key={c.id} tone={c.tone}>{c.name}</CategoryChip>)}
-          </div>
+          {business.kind && <p className="pb-2 text-sm font-bold uppercase tracking-[0.12em] text-squab-700">{business.kind}</p>}
         </div>
       </header>
 
@@ -157,10 +155,10 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
             )}
           </div>
 
-          {(business.facility || business.squabConnection) && (
+          {(business.location || business.squabConnection) && (
             <div className="rounded-[var(--radius-card)] bg-ink p-6 text-white">
-              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-squab-300">At Squab</h2>
-              {business.facility && <p className="mt-3 flex items-center gap-2 font-semibold"><MapPin aria-hidden className="size-4 text-squab-300" />{business.facility}</p>}
+              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-squab-300">Where to find us</h2>
+              {business.location && <p className="mt-3 flex items-center gap-2 font-semibold"><MapPin aria-hidden className="size-4 text-squab-300" />{business.location}</p>}
               {business.squabConnection && <p className="mt-2 text-white/75">{business.squabConnection}</p>}
             </div>
           )}
@@ -169,7 +167,7 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
 
       {related.length > 0 && (
         <Section aria-labelledby="related" className="border-t border-line bg-white">
-          <SectionHeader id="related" title="Similar businesses" action={{ label: "Full directory", href: "/businesses" }} />
+          <SectionHeader id="related" title="More businesses" action={{ label: "Full directory", href: "/businesses" }} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((b) => <BusinessCard key={b.id} business={b} />)}
           </div>

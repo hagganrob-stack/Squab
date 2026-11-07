@@ -41,7 +41,7 @@ export async function loadCategories(): Promise<Category[]> {
   const { data, error } = await getPublicClient()
     .from("categories")
     .select("*")
-    .order("name");
+    .order("display_order");
   if (error) throw new Error(`Failed to load categories: ${error.message}`);
   return (data as CategoryRow[]).map(mapCategory);
 }
@@ -54,7 +54,7 @@ export async function loadBusinesses(): Promise<Business[]> {
   const { data, error } = await getPublicClient()
     // Public view: active businesses only, private contact details masked.
     .from("business_directory")
-    .select("*, business_categories(category_id)")
+    .select("*")
     .order("name");
   if (error) throw new Error(`Failed to load businesses: ${error.message}`);
   return (data as BusinessRow[]).map(mapBusiness);
@@ -81,7 +81,7 @@ export async function loadOffers(): Promise<Offer[]> {
   if (!isSupabaseConfigured) return demo.offers.filter(isLive).map(withFlags);
   const { data, error } = await getPublicClient()
     .from("offers")
-    .select("*, offer_categories(category_id)")
+    .select("*")
     .eq("status", "published")
     .order("created_at", { ascending: false });
   if (error) throw new Error(`Failed to load offers: ${error.message}`);
