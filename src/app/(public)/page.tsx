@@ -125,7 +125,7 @@ export default async function HomePage() {
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={`/events/${nextEvent.slug}`} variant="onDark" size="lg">
-                  {nextEvent.registrationUrl ? "Details &amp; registration" : "Event details"} <ArrowRight aria-hidden />
+                  {nextEvent.registrationUrl ? "Details & registration" : "Event details"} <ArrowRight aria-hidden />
                 </ButtonLink>
                 <ButtonLink href="/events" variant="ghost" size="lg" className="text-white hover:bg-white/10">
                   All events
