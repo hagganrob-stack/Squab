@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock, MapPin } from "lucide-react";
 import { Hero } from "@/components/homepage/hero";
+import { InstagramFeed } from "@/components/shared/instagram-feed";
 import { OfferCard } from "@/components/perks/offer-card";
 import { StoryCard } from "@/components/stories/story-card";
 import { DateTile } from "@/components/events/event-card";
@@ -136,8 +137,10 @@ export default async function HomePage() {
         </Section>
       )}
 
+      <InstagramFeed />
+
       {/* Community CTA */}
-      <Section aria-labelledby="join-heading" className="pt-0 sm:pt-0">
+      <Section aria-labelledby="join-heading">
         <div className="relative overflow-hidden rounded-[var(--radius-panel)] bg-squab-500 px-7 py-12 text-ink sm:px-12 sm:py-16">
           <div aria-hidden className="absolute -bottom-24 -right-16 size-80 rounded-full bg-squab-300/70 blur-2xl" />
           <div className="relative max-w-2xl">
