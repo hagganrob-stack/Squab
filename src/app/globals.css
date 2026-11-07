@@ -24,6 +24,11 @@
   --color-navy: #183456;
   --color-navy-deep: #0f2440;
 
+  /* The Hide by Squab brand (from The Hide website brief) — used on /the-hide only. */
+  --color-hide-orange: #f4941e;
+  --color-hide-cream: #efe1d0;
+  --color-hide-black: #000000;
+
   --color-ink: #2d3748;
   --color-ink-soft: #4a5568;
   --color-paper: #faf8f5;

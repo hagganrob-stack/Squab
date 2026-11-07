@@ -32,6 +32,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/stories", destination: "/news", permanent: true },
       { source: "/stories/:slug", destination: "/news/:slug", permanent: true },
+      // The Hide has its own page rather than a standard directory profile.
+      { source: "/businesses/the-hide-cafe", destination: "/the-hide", permanent: false },
     ];
   },
   async headers() {
