@@ -381,6 +381,7 @@ export const homepageSettings: HomepageSettings = {
   hero: {
     eyebrow: "Welcome to Squab Connect",
     headline: "Good things happen when we connect.",
+    highlight: "we connect.",
     subheading:
       "Discover exclusive offers, meet the businesses around you and stay up to date with everything happening across the Squab community.",
     primaryCta: { label: "Explore Squab Perks", href: "/perks" },

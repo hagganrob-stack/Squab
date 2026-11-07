@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock, MapPin } from "lucide-react";
 import { Hero } from "@/components/homepage/hero";
-import { InstagramFeed } from "@/components/shared/instagram-feed";
 import { OfferCard } from "@/components/perks/offer-card";
 import { StoryCard } from "@/components/stories/story-card";
 import { DateTile } from "@/components/events/event-card";
@@ -107,12 +106,13 @@ export default async function HomePage() {
       {/* Upcoming event */}
       {nextEvent && (
         <Section aria-labelledby="event-heading" className="pt-0 sm:pt-0">
-          <div className="overflow-hidden rounded-[var(--radius-panel)] bg-ink text-white lg:grid lg:grid-cols-2">
+          <div className="overflow-hidden rounded-[var(--radius-panel)] bg-navy text-white lg:grid lg:grid-cols-2">
             <div className="relative">
               <Media src={nextEvent.imageUrl} alt="" ratio="16/9" tone="rose" rounded={false} className="h-full lg:aspect-auto!" label="Event photo" />
               {nextEvent.isDemo && <SampleBadge className="absolute right-4 top-4" />}
             </div>
             <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-14">
+              <span aria-hidden className="mb-4 block h-1 w-10 rounded-full bg-squab-500" />
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-squab-300">Upcoming event</p>
               <h2 id="event-heading" className="mt-3 text-headline font-extrabold">{nextEvent.title}</h2>
               <p className="mt-4 text-lg leading-relaxed text-white/75">{nextEvent.summary}</p>
@@ -137,10 +137,8 @@ export default async function HomePage() {
         </Section>
       )}
 
-      <InstagramFeed />
-
       {/* Community CTA */}
-      <Section aria-labelledby="join-heading">
+      <Section aria-labelledby="join-heading" className="pt-0 sm:pt-0">
         <div className="relative overflow-hidden rounded-[var(--radius-panel)] bg-squab-500 px-7 py-12 text-ink sm:px-12 sm:py-16">
           <div aria-hidden className="absolute -bottom-24 -right-16 size-80 rounded-full bg-squab-300/70 blur-2xl" />
           <div className="relative max-w-2xl">

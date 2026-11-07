@@ -32,6 +32,7 @@ export function SectionHeader({
   return (
     <div className={cn("mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between", className)}>
       <div className="max-w-2xl">
+        <AccentBar />
         {eyebrow && (
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-squab-700">{eyebrow}</p>
         )}
@@ -69,6 +70,7 @@ export function PageIntro({
   return (
     <header className={cn("border-b border-line bg-white", className)}>
       <div className="container-page py-12 sm:py-16">
+        <AccentBar />
         {eyebrow && (
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-squab-700">{eyebrow}</p>
         )}
@@ -80,6 +82,11 @@ export function PageIntro({
       </div>
     </header>
   );
+}
+
+/** The short orange rule that sits above headlines across Squab's social posts. */
+export function AccentBar({ className }: { className?: string }) {
+  return <span aria-hidden className={cn("mb-4 block h-1 w-10 rounded-full bg-squab-500", className)} />;
 }
 
 export function EmptyState({ title, body, action }: { title: string; body: string; action?: React.ReactNode }) {

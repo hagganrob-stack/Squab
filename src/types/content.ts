@@ -183,6 +183,8 @@ export interface HomepageSettings {
   hero: {
     eyebrow: string;
     headline: string;
+    /** Part of the headline to pick out in orange, e.g. "we connect." */
+    highlight?: string;
     subheading: string;
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };

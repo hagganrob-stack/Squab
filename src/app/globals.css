@@ -19,6 +19,11 @@
   --color-squab-800: #7a460a;
   --color-squab-900: #5e3810;
 
+  /* Deep navy from the Squab Workspace social style: used sparingly for
+     dark panels, photo overlays and the footer. Amber on navy is 6.4:1. */
+  --color-navy: #183456;
+  --color-navy-deep: #0f2440;
+
   --color-ink: #2d3748;
   --color-ink-soft: #4a5568;
   --color-paper: #faf8f5;
