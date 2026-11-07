@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MapPin, Tag } from "lucide-react";
 import { SampleBadge } from "@/components/ui/badge";
 import { Logo, Media } from "@/components/ui/media";
-import { cn } from "@/lib/utils";
+import { cn, initials } from "@/lib/utils";
 import type { BusinessWithOffers } from "@/lib/data";
 
 export function BusinessCard({ business, className }: { business: BusinessWithOffers; className?: string }) {
@@ -15,7 +15,13 @@ export function BusinessCard({ business, className }: { business: BusinessWithOf
       )}
     >
       <div className="relative">
-        <Media src={business.coverImageUrl} alt="" ratio="16/9" rounded={false} fallbackLogo={business.logoUrl} fallbackLogoDark={dark} label="Cover photo" />
+        {business.coverImageUrl || business.logoUrl ? (
+          <Media src={business.coverImageUrl} alt="" ratio="16/9" rounded={false} fallbackLogo={business.logoUrl} fallbackLogoDark={dark} label="Cover photo" />
+        ) : (
+          <div aria-hidden className="flex aspect-video items-center justify-center bg-cream">
+            <span className="font-display text-5xl font-extrabold text-squab-700/40">{initials(business.name)}</span>
+          </div>
+        )}
         {business.isDemo && <SampleBadge className="absolute right-3 top-3" />}
       </div>
       <div className="relative flex flex-1 flex-col px-5 pb-5">

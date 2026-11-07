@@ -25,7 +25,10 @@ export default async function HomePage() {
     getStories(),
     getEvents(),
   ]);
-  const community = [...businesses].sort((a, b) => Number(b.featured) - Number(a.featured)).slice(0, 8);
+  const community = businesses
+    .filter((b) => !b.listingOnly)
+    .sort((a, b) => Number(b.featured) - Number(a.featured))
+    .slice(0, 9);
   const [leadStory, ...moreStories] = stories;
   const nextEvent = events.upcoming.find((e) => e.featured) ?? events.upcoming[0];
 

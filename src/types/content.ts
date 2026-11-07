@@ -51,6 +51,11 @@ export interface Business {
   featured: boolean;
   status: BusinessStatus;
   isDemo: boolean;
+  /**
+   * Name-only directory entry: shown in the "Also based at Squab" list but
+   * with no profile page, until verified details are added.
+   */
+  listingOnly?: boolean;
 }
 
 export type RedemptionMethod = "show" | "link" | "code" | "contact";

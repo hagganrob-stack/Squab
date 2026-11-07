@@ -70,7 +70,12 @@ export async function getBusinessById(id: string) {
 }
 
 export async function getOtherBusinesses(business: Business, limit = 3) {
-  return (await getBusinesses()).filter((b) => b.id !== business.id).slice(0, limit);
+  return (await getBusinesses()).filter((b) => b.id !== business.id && !b.listingOnly).slice(0, limit);
+}
+
+/** Businesses with a full profile page (excludes name-only listings). */
+export async function getProfiledBusinesses() {
+  return (await getBusinesses()).filter((b) => !b.listingOnly);
 }
 
 /* ---------- Stories ---------- */

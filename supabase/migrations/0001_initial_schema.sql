@@ -144,6 +144,7 @@ create table public.businesses (
   status public.business_status not null default 'pending',
   featured boolean not null default false,
   is_demo boolean not null default false,
+  listing_only boolean not null default false, -- name-only directory entry, no profile page
   created_by uuid references public.profiles (id) on delete set null,
   approved_by uuid references public.profiles (id) on delete set null,
   approved_at timestamptz,
@@ -527,7 +528,7 @@ create view public.business_directory with (security_barrier = true) as
          case when show_email then email end as email,
          case when show_phone then phone end as phone,
          show_email, show_phone, website, social_links, location, squab_connection,
-         status, featured, is_demo, created_at, updated_at
+         status, featured, is_demo, listing_only, created_at, updated_at
   from public.businesses
   where status = 'active';
 revoke all on public.business_directory from public;

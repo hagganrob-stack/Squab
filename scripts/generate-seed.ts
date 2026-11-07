@@ -66,6 +66,7 @@ sql += insert(
     status: b.status,
     featured: b.featured,
     is_demo: b.isDemo,
+    listing_only: b.listingOnly ?? false,
   })),
 );
 

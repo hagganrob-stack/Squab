@@ -15,7 +15,7 @@ import { getBusinessBySlug, getBusinesses, getOffersForBusiness, getOtherBusines
 import { siteUrl, stripProtocol } from "@/lib/utils";
 
 export async function generateStaticParams() {
-  return (await getBusinesses()).map((b) => ({ slug: b.slug }));
+  return (await getBusinesses()).filter((b) => !b.listingOnly).map((b) => ({ slug: b.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/businesses/[slug]">): Promise<Metadata> {
@@ -35,7 +35,7 @@ const socialLabels = { instagram: "Instagram", linkedin: "LinkedIn", facebook: "
 export default async function BusinessPage({ params }: PageProps<"/businesses/[slug]">) {
   const { slug } = await params;
   const business = await getBusinessBySlug(slug);
-  if (!business) notFound();
+  if (!business || business.listingOnly) notFound();
   const [offers, related, stories] = await Promise.all([
     getOffersForBusiness(business.id),
     getOtherBusinesses(business),

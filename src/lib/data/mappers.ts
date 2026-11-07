@@ -40,6 +40,7 @@ export interface BusinessRow {
   status: Business["status"];
   featured: boolean;
   is_demo: boolean;
+  listing_only: boolean;
 }
 
 export interface OfferRow {
@@ -145,6 +146,7 @@ export const mapBusiness = (r: BusinessRow): Business => ({
   featured: r.featured,
   status: r.status,
   isDemo: r.is_demo,
+  listingOnly: r.listing_only,
 });
 
 export const mapOffer = (r: OfferRow): Offer => ({

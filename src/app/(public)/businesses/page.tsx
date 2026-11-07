@@ -18,13 +18,13 @@ export default async function BusinessesPage() {
       <PageIntro
         eyebrow="Businesses"
         title="Meet the businesses around you."
-        description="Local businesses in the Squab community — find someone to work with, buy from or simply say hello to."
+        description={`${businesses.length} businesses, charities and clubs are based at Squab — find someone to work with, buy from or simply say hello to.`}
       />
       <Section aria-label="All businesses" className="pt-10 sm:pt-12">
         <Suspense
           fallback={
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {businesses.map((b) => <BusinessCard key={b.id} business={b} />)}
+              {businesses.filter((b) => !b.listingOnly).map((b) => <BusinessCard key={b.id} business={b} />)}
             </div>
           }
         >

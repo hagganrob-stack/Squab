@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...statics,
     // Only live (non-expired) offers are listed; expired offers return 404 and drop out of the index.
     ...offers.map((o) => ({ url: siteUrl(`/perks/${o.slug}`) })),
-    ...businesses.filter((b) => b.slug !== "the-hide-cafe").map((b) => ({ url: siteUrl(`/businesses/${b.slug}`) })),
+    ...businesses.filter((b) => b.slug !== "the-hide-cafe" && !b.listingOnly).map((b) => ({ url: siteUrl(`/businesses/${b.slug}`) })),
     ...stories.map((s) => ({ url: siteUrl(`/news/${s.slug}`), lastModified: s.publishedAt })),
     ...[...events.upcoming, ...events.past].map((e) => ({ url: siteUrl(`/events/${e.slug}`) })),
   ];
