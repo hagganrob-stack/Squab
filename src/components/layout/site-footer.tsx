@@ -7,7 +7,7 @@ const columns = [
     links: [
       { href: "/perks", label: "Squab Perks" },
       { href: "/businesses", label: "Business directory" },
-      { href: "/stories", label: "Squab Stories" },
+      { href: "/news", label: "News & Stories" },
       { href: "/events", label: "Events" },
     ],
   },

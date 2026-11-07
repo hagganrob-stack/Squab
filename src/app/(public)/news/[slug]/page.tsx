@@ -17,14 +17,14 @@ export async function generateStaticParams() {
   return (await getStories()).map((s) => ({ slug: s.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps<"/stories/[slug]">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/news/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const story = await getStoryBySlug(slug);
   if (!story) return { title: "Story not found", robots: { index: false } };
   return {
     title: story.title,
     description: story.standfirst,
-    alternates: { canonical: `/stories/${story.slug}` },
+    alternates: { canonical: `/news/${story.slug}` },
     openGraph: {
       type: "article",
       title: story.title,
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps<"/stories/[slug]">)
   };
 }
 
-export default async function StoryPage({ params }: PageProps<"/stories/[slug]">) {
+export default async function StoryPage({ params }: PageProps<"/news/[slug]">) {
   const { slug } = await params;
   const story = await getStoryBySlug(slug);
   if (!story) notFound();
@@ -58,13 +58,13 @@ export default async function StoryPage({ params }: PageProps<"/stories/[slug]">
           datePublished: story.publishedAt,
           author: { "@type": "Organization", name: story.authorName },
           publisher: { "@type": "Organization", name: "Squab Connect" },
-          mainEntityOfPage: siteUrl(`/stories/${story.slug}`),
+          mainEntityOfPage: siteUrl(`/news/${story.slug}`),
           ...(story.heroImageUrl ? { image: [story.heroImageUrl] } : {}),
         }}
       />
       <article>
         <header className="container-page max-w-4xl pt-6 text-center">
-          <div className="text-left"><BackLink href="/stories" label="Squab Stories" /></div>
+          <div className="text-left"><BackLink href="/news" label="News & Stories" /></div>
           <div className="mt-8 flex items-center justify-center gap-2">
             <CategoryChip tone={story.category.tone}>{story.category.name}</CategoryChip>
             {story.isDemo && <SampleBadge />}
@@ -111,7 +111,7 @@ export default async function StoryPage({ params }: PageProps<"/stories/[slug]">
 
       {related.length > 0 && (
         <Section aria-labelledby="more-stories" className="border-t border-line bg-white">
-          <SectionHeader id="more-stories" title="More from Squab Stories" action={{ label: "All stories", href: "/stories" }} />
+          <SectionHeader id="more-stories" title="More news & stories" action={{ label: "All news & stories", href: "/news" }} />
           <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((s) => <StoryCard key={s.id} story={s} size="sm" />)}
           </div>

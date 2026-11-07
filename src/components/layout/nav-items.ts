@@ -2,7 +2,7 @@ export const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/perks", label: "Perks" },
   { href: "/businesses", label: "Businesses" },
-  { href: "/stories", label: "Stories" },
+  { href: "/news", label: "News & Stories" },
   { href: "/events", label: "Events" },
   { href: "/about", label: "About Connect" },
 ] as const;

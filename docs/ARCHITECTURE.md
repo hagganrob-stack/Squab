@@ -51,7 +51,7 @@ src/app/
     page.tsx           /
     perks/             /perks, /perks/[slug]
     businesses/        /businesses, /businesses/[slug]
-    stories/           /stories, /stories/[slug]
+    news/           /news, /news/[slug]
     events/            /events, /events/[slug]
     about/  search/
   (auth)/              /login, /register            (Phase 3)

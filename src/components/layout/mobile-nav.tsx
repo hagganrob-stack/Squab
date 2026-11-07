@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, Compass, Home, Tag, UserRound } from "lucide-react";
+import { Compass, Home, Newspaper, Tag, UserRound } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { isActive } from "./nav-items";
 
@@ -10,7 +10,7 @@ const items = [
   { href: "/", label: "Home", icon: Home },
   { href: "/perks", label: "Perks", icon: Tag },
   { href: "/businesses", label: "Discover", icon: Compass },
-  { href: "/stories", label: "Stories", icon: BookOpen },
+  { href: "/news", label: "News", icon: Newspaper },
   { href: "/account", label: "Account", icon: UserRound },
 ] as const;
 

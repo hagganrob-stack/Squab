@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const pillars = [
   { icon: Tag, title: "Squab Perks", body: "Exclusive offers and discounts from businesses based at Squab — for everyone in the community.", href: "/perks" },
   { icon: Store, title: "Business directory", body: "Find the trades, makers, studios and services working alongside you.", href: "/businesses" },
-  { icon: BookOpen, title: "Squab Stories", body: "Spotlights, news and practical insights from across the community.", href: "/stories" },
+  { icon: BookOpen, title: "News & Stories", body: "Squab news, business spotlights and what's happening across the community.", href: "/news" },
   { icon: CalendarDays, title: "Events", body: "Networking evenings and community events to meet people face to face.", href: "/events" },
 ];
 
@@ -44,7 +44,7 @@ export default function AboutPage() {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-squab-700">For Squab businesses</p>
             <h2 id="for-businesses" className="mt-3 text-headline font-extrabold">Run a business from Squab? Make yourself known.</h2>
             <p className="mt-4 text-lg leading-relaxed text-stone-muted">
-              Get a free profile in the directory, share an exclusive offer with the community and be considered for a Squab Stories spotlight.
+              Get a free profile in the directory, share an exclusive offer with the community and be considered for a spotlight in News & Stories.
             </p>
           </div>
           <ol className="space-y-4">

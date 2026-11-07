@@ -7,7 +7,7 @@ import { SearchInput, replaceQuery } from "./search-input";
 import { normalise } from "@/lib/utils";
 
 export interface SearchItem {
-  kind: "Perk" | "Business" | "Story" | "Event";
+  kind: "Perk" | "Business" | "News" | "Event";
   title: string;
   subtitle: string;
   href: string;

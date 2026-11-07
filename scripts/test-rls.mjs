@@ -108,6 +108,6 @@ try { await as("authenticated", u1, `update businesses set featured = not featur
 check("member cannot feature own business", !!err);
 
 r = await as("anon", null, "select count(*)::int n from stories");
-check("anon reads published stories", r.rows[0].n === 4);
+check("anon reads published stories", r.rows[0].n === 5);
 r = await as("anon", null, "select count(*)::int n from newsletter_subscribers");
 check("anon cannot read subscribers", r.rows[0].n === 0);

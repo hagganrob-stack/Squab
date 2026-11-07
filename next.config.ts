@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
       ? [{ protocol: "https", hostname: supabaseHost, pathname: "/storage/v1/object/public/**" }]
       : [],
   },
+  async redirects() {
+    return [
+      { source: "/stories", destination: "/news", permanent: true },
+      { source: "/stories/:slug", destination: "/news/:slug", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

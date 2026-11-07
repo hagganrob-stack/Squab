@@ -9,10 +9,9 @@ import { EmptyState, Section, SectionHeader } from "@/components/ui/section";
 import { getEvents, getStories } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Squab Stories — the people, businesses and stories that make Squab",
-  description:
-    "Business spotlights, community news, upcoming events and useful insights from across the Squab community.",
-  alternates: { canonical: "/stories" },
+  title: "News & Stories — what's happening across Squab",
+  description: "Squab news, business spotlights and upcoming events from across the Squab community.",
+  alternates: { canonical: "/news" },
 };
 
 export default async function StoriesPage() {
@@ -23,7 +22,7 @@ export default async function StoriesPage() {
   if (!lead) {
     return (
       <Section>
-        <EmptyState title="Stories are coming soon" body="The first Squab Stories are being written. Check back shortly." />
+        <EmptyState title="News is on its way" body="The first news and stories are being written. Check back shortly." />
       </Section>
     );
   }
@@ -32,10 +31,10 @@ export default async function StoriesPage() {
     <>
       <header className="container-page pb-4 pt-12 sm:pt-16">
         <span aria-hidden className="mb-4 block h-1 w-10 rounded-full bg-squab-500" />
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-squab-700">Squab Stories</p>
-        <h1 className="mt-3 max-w-4xl text-display font-extrabold">The people, businesses and stories that make Squab.</h1>
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-squab-700">News &amp; Stories</p>
+        <h1 className="mt-3 max-w-4xl text-display font-extrabold">What’s happening across Squab.</h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-stone-muted">
-          From business spotlights and community news to upcoming events and useful insights, discover what&rsquo;s happening across the Squab community.
+          Squab news, business spotlights and upcoming events from across the Squab community.
         </p>
       </header>
 
@@ -49,7 +48,7 @@ export default async function StoriesPage() {
           <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
             <CategoryChip tone={lead.category.tone} className="self-start">{lead.category.name}</CategoryChip>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-[2.6rem]">
-              <Link href={`/stories/${lead.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">{lead.title}</Link>
+              <Link href={`/news/${lead.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">{lead.title}</Link>
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-white/75">{lead.standfirst}</p>
             <StoryMeta story={lead} className="mt-5 text-white/60" />
@@ -62,7 +61,7 @@ export default async function StoriesPage() {
 
       {rest.length > 0 && (
       <Section aria-labelledby="latest">
-        <SectionHeader id="latest" title="Latest stories" />
+        <SectionHeader id="latest" title="Latest news & stories" />
         <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {rest.slice(0, 6).map((s) => <StoryCard key={s.id} story={s} />)}
         </div>

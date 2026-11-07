@@ -46,7 +46,7 @@ export function StoryCard({
           size === "lg" ? "text-3xl sm:text-4xl" : size === "md" ? "text-xl sm:text-2xl" : "text-lg",
         )}
       >
-        <Link href={`/stories/${story.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">
+        <Link href={`/news/${story.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">
           {story.title}
         </Link>
       </h3>

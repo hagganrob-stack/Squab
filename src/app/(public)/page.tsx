@@ -88,9 +88,9 @@ export default async function HomePage() {
         <Section aria-labelledby="stories-heading">
           <SectionHeader
             id="stories-heading"
-            eyebrow="Squab Stories"
-            title="The people, businesses and stories that make Squab"
-            action={{ label: "Read all stories", href: "/stories" }}
+            eyebrow="News & Stories"
+            title="What’s happening at Squab"
+            action={{ label: "All news & stories", href: "/news" }}
           />
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
             <StoryCard story={leadStory} ratio="16/9" size="lg" />

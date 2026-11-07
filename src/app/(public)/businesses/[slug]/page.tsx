@@ -121,7 +121,7 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
 
           {features.length > 0 && (
             <section className="mt-12" aria-labelledby="features">
-              <h2 id="features" className="text-2xl font-extrabold">Featured in Squab Stories</h2>
+              <h2 id="features" className="text-2xl font-extrabold">Featured in News & Stories</h2>
               <div className="mt-5 grid gap-8 sm:grid-cols-2">
                 {features.map((s) => <StoryCard key={s.id} story={s} size="sm" />)}
               </div>
