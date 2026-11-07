@@ -45,7 +45,7 @@ export async function getOffersForBusiness(businessId: string) {
   return (await getOffers()).filter((o) => o.businessId === businessId);
 }
 
-export async function getOtherOffers(offer: OfferWithBusiness, limit = 3) {
+export async function getOtherOffers(offer: OfferWithBusiness, limit = 4) {
   return (await getOffers()).filter((o) => o.id !== offer.id).slice(0, limit);
 }
 

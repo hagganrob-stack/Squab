@@ -29,19 +29,19 @@ export function OfferCard({
   return (
     <article
       className={cn(
-        "group relative flex min-h-44 min-w-0 rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line/70 transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-lift",
+        "group relative flex min-h-48 min-w-0 rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line/70 transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-lift",
         className,
       )}
     >
       {/* Stub */}
-      <div className="relative flex w-[7.5rem] shrink-0 flex-col items-center justify-center overflow-hidden rounded-l-[var(--radius-card)] bg-squab-500 px-3 text-center text-ink sm:w-32">
+      <div className="relative flex w-[7.5rem] shrink-0 flex-col items-center justify-center overflow-hidden rounded-l-[var(--radius-card)] bg-squab-500 px-3 text-center text-ink sm:w-40">
         <span aria-hidden className="absolute -right-8 -top-8 size-20 rounded-full bg-white/20" />
         <span aria-hidden className="absolute -bottom-10 -left-6 size-20 rounded-full bg-squab-600/25" />
-        <span className={cn("relative font-display font-extrabold leading-none tracking-tight", long ? "text-3xl" : "text-[2.6rem]")}>
+        <span className={cn("relative font-display font-extrabold leading-none tracking-tight", long ? "text-3xl sm:text-4xl" : "text-[2.6rem] sm:text-5xl")}>
           {value}
         </span>
         {caption && (
-          <span className="relative mt-1.5 text-xs font-extrabold uppercase leading-tight tracking-wider">{caption}</span>
+          <span className="relative mt-1.5 text-xs font-extrabold uppercase leading-tight tracking-wider sm:text-sm">{caption}</span>
         )}
       </div>
 
@@ -53,16 +53,16 @@ export function OfferCard({
       </div>
 
       {/* Details */}
-      <div className="flex min-w-0 flex-1 flex-col p-4 pl-5 sm:p-5 sm:pl-6">
-        <div className="flex items-center gap-2.5">
-          <Logo src={business.logoUrl} name={business.name} size={36} dark={business.logoBackground === "dark"} className="rounded-lg" />
-          <div className="min-w-0">
+      <div className="flex min-w-0 flex-1 flex-col p-4 pl-5 sm:p-6 sm:pl-7">
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2">
+          <Logo src={business.logoUrl} name={business.name} size={44} width={business.logoUrl ? 88 : undefined} dark={business.logoBackground === "dark"} className="rounded-lg" />
+          <div className="min-w-[8.5rem] flex-1">
             <p className="truncate text-sm font-bold text-ink">{business.name}</p>
             {business.kind && <p className="truncate text-xs text-stone-muted">{business.kind}</p>}
           </div>
           {offer.isDemo && <SampleBadge className="ml-auto" />}
         </div>
-        <h3 className="mt-3 text-[1.05rem] font-bold leading-snug">
+        <h3 className="mt-4 text-lg font-bold leading-snug sm:text-xl">
           <Link href={`/perks/${offer.slug}`} className="after:absolute after:inset-0 after:rounded-[var(--radius-card)] focus-visible:outline-none">
             {offer.title}
           </Link>

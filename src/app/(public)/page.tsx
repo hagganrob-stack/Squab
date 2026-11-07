@@ -43,7 +43,7 @@ export default async function HomePage() {
           action={{ label: "View all perks", href: "/perks" }}
         />
         {offers.length ? (
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             {offers.map((o) => (
               <OfferCard key={o.id} offer={o} />
             ))}

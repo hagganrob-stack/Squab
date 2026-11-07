@@ -54,7 +54,7 @@ export default async function PerksPage() {
       <Section aria-label="All perks" className="pt-10 sm:pt-12">
         <Suspense
           fallback={
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               {offers.map((o) => <OfferCard key={o.id} offer={o} />)}
             </div>
           }

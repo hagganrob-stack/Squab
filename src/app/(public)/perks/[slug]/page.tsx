@@ -138,7 +138,7 @@ export default async function OfferPage({ params }: PageProps<"/perks/[slug]">) 
       {related.length > 0 && (
         <Section aria-labelledby="related-perks" className="border-t border-line bg-white">
           <SectionHeader id="related-perks" title="More Squab Perks" action={{ label: "All perks", href: "/perks" }} />
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             {related.map((o) => <OfferCard key={o.id} offer={o} notchClassName="bg-white" />)}
           </div>
         </Section>

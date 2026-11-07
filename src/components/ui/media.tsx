@@ -94,12 +94,15 @@ export function Logo({
   src,
   name,
   size = 48,
+  width,
   dark,
   className,
 }: {
   src?: string;
   name: string;
   size?: number;
+  /** Tile width when different from its height (wide logos). */
+  width?: number;
   dark?: boolean;
   className?: string;
 }) {
@@ -110,10 +113,10 @@ export function Logo({
         src ? (dark ? "bg-ink" : "bg-white") : "bg-ink text-white",
         className,
       )}
-      style={{ width: size, height: size }}
+      style={{ width: width ?? size, height: size }}
     >
       {src ? (
-        <Image src={src} alt={`${name} logo`} fill sizes={`${size * 2}px`} unoptimized={isSvg(src)} className="object-contain p-[12%]" />
+        <Image src={src} alt={`${name} logo`} fill sizes={`${(width ?? size) * 2}px`} unoptimized={isSvg(src)} className={cn("object-contain", width ? "px-2.5 py-1.5" : "p-[12%]")} />
       ) : (
         <>
           <span aria-hidden className="font-display font-extrabold" style={{ fontSize: size * 0.36 }}>

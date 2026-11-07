@@ -34,7 +34,7 @@ export function PerksExplorer({ offers }: { offers: OfferWithBusiness[] }) {
         {results.length} {results.length === 1 ? "offer" : "offers"}
       </p>
       {results.length ? (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {results.map((o, i) => (
             <OfferCard key={o.id} offer={o} priority={i < 3} />
           ))}
