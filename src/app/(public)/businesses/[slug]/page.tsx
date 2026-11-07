@@ -72,7 +72,7 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
         </div>
         <div className="flex flex-col gap-6 px-1 sm:flex-row sm:items-end sm:justify-between sm:px-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
-            <Logo src={business.logoUrl} name={business.name} size={104} dark={dark} className="-mt-12 rounded-[1.4rem] ring-[6px] ring-paper" />
+            <Logo src={business.logoUrl} name={business.name} size={104} width={business.logoUrl ? 200 : undefined} dark={dark} className="-mt-12 rounded-[1.4rem] ring-[6px] ring-paper" />
             <div className="pb-1">
               <h1 className="text-headline font-extrabold sm:text-5xl">{business.name}</h1>
               <p className="mt-2 text-lg text-stone-muted">{business.tagline}</p>

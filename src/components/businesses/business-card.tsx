@@ -25,7 +25,7 @@ export function BusinessCard({ business, className }: { business: BusinessWithOf
         {business.isDemo && <SampleBadge className="absolute right-3 top-3" />}
       </div>
       <div className="relative flex flex-1 flex-col px-5 pb-5">
-        <Logo src={business.logoUrl} name={business.name} size={56} dark={dark} className="-mt-7 ring-4 ring-white" />
+        <Logo src={business.logoUrl} name={business.name} size={56} width={business.logoUrl ? 112 : undefined} dark={dark} className="-mt-7 ring-4 ring-white" />
         <h3 className="mt-3 text-lg font-bold">
           <Link href={`/businesses/${business.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">
             {business.name}
