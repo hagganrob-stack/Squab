@@ -43,9 +43,9 @@ export default async function HomePage() {
           action={{ label: "View all perks", href: "/perks" }}
         />
         {offers.length ? (
-          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scrollbar-none sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-3">
-            {offers.map((o, i) => (
-              <OfferCard key={o.id} offer={o} priority={i < 3} className="w-[82%] shrink-0 snap-start sm:w-auto" />
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {offers.map((o) => (
+              <OfferCard key={o.id} offer={o} />
             ))}
           </div>
         ) : (

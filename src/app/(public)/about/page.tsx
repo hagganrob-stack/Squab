@@ -69,7 +69,7 @@ export default function AboutPage() {
 
       <Section aria-labelledby="policies">
         <SectionHeader id="policies" title="Privacy & terms" />
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <div id="privacy" className="rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line">
             <h3 className="text-lg font-bold">Privacy</h3>
             <p className="mt-2 text-stone-muted">Squab Connect&rsquo;s full privacy and cookie policy will be published here before launch. We use privacy-friendly, cookieless analytics and never share your details with businesses without your action.</p>

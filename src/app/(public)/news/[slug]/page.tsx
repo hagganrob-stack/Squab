@@ -102,7 +102,7 @@ export default async function StoryPage({ params }: PageProps<"/news/[slug]">) {
             </Link>
             {businessOffers.length > 0 && (
               <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                {businessOffers.slice(0, 2).map((o) => <OfferCard key={o.id} offer={o} />)}
+                {businessOffers.slice(0, 2).map((o) => <OfferCard key={o.id} offer={o} notchClassName="bg-white" />)}
               </div>
             )}
           </div>

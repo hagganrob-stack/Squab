@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Check, Copy, ExternalLink, Mail, Phone, Smartphone, X } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Wordmark } from "@/components/layout/wordmark";
+import { rewardParts } from "@/lib/perks";
 import type { RedemptionMethod } from "@/types/content";
 
 interface Props {
@@ -34,12 +35,28 @@ export function RedemptionPanel(props: Props) {
     }
   };
 
+  const { value, caption } = rewardParts(props.rewardLabel);
+
   return (
-    <div className="rounded-[var(--radius-panel)] bg-white p-6 shadow-lift ring-1 ring-line">
-      <p className="text-xs font-bold uppercase tracking-[0.14em] text-stone-muted">Your Squab benefit</p>
-      <p className="mt-2 font-display text-3xl font-extrabold text-ink">{props.rewardLabel}</p>
-      {props.expiryLabel && <p className="mt-1 text-sm text-stone-muted">{props.expiryLabel}</p>}
-      <div className="mt-6 space-y-3">
+    <div className="rounded-[var(--radius-panel)] bg-white shadow-lift ring-1 ring-line">
+      <div className="relative overflow-hidden rounded-t-[var(--radius-panel)] bg-squab-500 px-6 pb-7 pt-5 text-ink">
+        <span aria-hidden className="absolute -right-10 -top-12 size-32 rounded-full bg-white/20" />
+        <p className="relative text-xs font-bold uppercase tracking-[0.14em] text-ink/70">Your Squab perk</p>
+        <p className="relative mt-2 flex items-baseline gap-2">
+          <span className="font-display text-5xl font-extrabold leading-none tracking-tight">{value}</span>
+          {caption && <span className="text-lg font-extrabold uppercase tracking-wide">{caption}</span>}
+        </p>
+        <p className="relative mt-2 font-semibold">at {props.businessName}</p>
+      </div>
+      {/* Tear line */}
+      <div aria-hidden className="relative h-0">
+        <span className="absolute -left-3 -top-3 size-6 rounded-full bg-paper ring-1 ring-inset ring-line [clip-path:inset(0_0_0_50%)]" />
+        <span className="absolute -right-3 -top-3 size-6 rounded-full bg-paper ring-1 ring-inset ring-line [clip-path:inset(0_50%_0_0)]" />
+        <span className="absolute inset-x-5 top-0 border-t-2 border-dashed border-line" />
+      </div>
+      <div className="p-6 pt-5">
+      {props.expiryLabel && <p className="text-sm text-stone-muted">{props.expiryLabel}</p>}
+      <div className="mt-4 space-y-3">
         {method === "show" && <ShowOffer {...props} />}
         {method === "code" && <RevealCode {...props} onReveal={() => track("code_reveal")} onShop={() => track("redeem_click")} />}
         {method === "link" && props.url && (
@@ -50,6 +67,7 @@ export function RedemptionPanel(props: Props) {
         {(method === "contact" || method === "link") && (
           <ContactButtons email={props.email} phone={props.phone} onClick={() => track("redeem_click")} />
         )}
+      </div>
       </div>
     </div>
   );

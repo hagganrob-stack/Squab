@@ -113,7 +113,7 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
           {offers.length > 0 && (
             <section className="mt-12" aria-labelledby="perks">
               <h2 id="perks" className="text-2xl font-extrabold">Squab Perks from {business.name}</h2>
-              <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
                 {offers.map((o) => <OfferCard key={o.id} offer={o} />)}
               </div>
             </section>
