@@ -61,7 +61,7 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
       />
 
       <div className="container-page pt-6">
-        <BackLink href="/businesses" label="Directory" />
+        <BackLink href="/businesses" label="The Network" />
       </div>
 
       {/* Identity */}
@@ -121,7 +121,7 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
 
           {features.length > 0 && (
             <section className="mt-12" aria-labelledby="features">
-              <h2 id="features" className="text-2xl font-extrabold">Featured in News & Stories</h2>
+              <h2 id="features" className="text-2xl font-extrabold">Featured in the news</h2>
               <div className="mt-5 grid gap-8 sm:grid-cols-2">
                 {features.map((s) => <StoryCard key={s.id} story={s} size="sm" />)}
               </div>
@@ -167,7 +167,7 @@ export default async function BusinessPage({ params }: PageProps<"/businesses/[s
 
       {related.length > 0 && (
         <Section aria-labelledby="related" className="border-t border-line bg-white">
-          <SectionHeader id="related" title="More businesses" action={{ label: "Full directory", href: "/businesses" }} />
+          <SectionHeader id="related" title="More businesses" action={{ label: "The full network", href: "/businesses" }} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((b) => <BusinessCard key={b.id} business={b} />)}
           </div>

@@ -63,7 +63,7 @@ export default async function HomePage() {
           eyebrow="Meet the community"
           title="The businesses around you"
           description="Pilates, golf, swimming, coffee, training and more — discover the businesses in the Squab community."
-          action={{ label: "Discover all businesses", href: "/businesses" }}
+          action={{ label: "Explore the network", href: "/businesses" }}
         />
         <ul className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 scrollbar-none sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-3">
           {community.map((b) => (
@@ -91,9 +91,9 @@ export default async function HomePage() {
         <Section aria-labelledby="stories-heading">
           <SectionHeader
             id="stories-heading"
-            eyebrow="News & Stories"
+            eyebrow="News"
             title="What’s happening at Squab"
-            action={{ label: "All news & stories", href: "/news" }}
+            action={{ label: "All news", href: "/news" }}
           />
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
             <StoryCard story={leadStory} ratio="16/9" size="lg" />

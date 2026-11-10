@@ -30,6 +30,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/network", destination: "/businesses", permanent: false },
       { source: "/stories", destination: "/news", permanent: true },
       { source: "/stories/:slug", destination: "/news/:slug", permanent: true },
       // The Hide has its own page rather than a standard directory profile.

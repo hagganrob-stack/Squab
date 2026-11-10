@@ -64,7 +64,7 @@ export default async function StoryPage({ params }: PageProps<"/news/[slug]">) {
       />
       <article>
         <header className="container-page max-w-4xl pt-6 text-center">
-          <div className="text-left"><BackLink href="/news" label="News & Stories" /></div>
+          <div className="text-left"><BackLink href="/news" label="News" /></div>
           <div className="mt-8 flex items-center justify-center gap-2">
             <CategoryChip tone={story.category.tone}>{story.category.name}</CategoryChip>
             {story.isDemo && <SampleBadge />}
@@ -111,7 +111,7 @@ export default async function StoryPage({ params }: PageProps<"/news/[slug]">) {
 
       {related.length > 0 && (
         <Section aria-labelledby="more-stories" className="border-t border-line bg-white">
-          <SectionHeader id="more-stories" title="More news & stories" action={{ label: "All news & stories", href: "/news" }} />
+          <SectionHeader id="more-stories" title="More news" action={{ label: "All news", href: "/news" }} />
           <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((s) => <StoryCard key={s.id} story={s} size="sm" />)}
           </div>

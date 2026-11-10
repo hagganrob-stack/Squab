@@ -1,8 +1,8 @@
 export const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/perks", label: "Perks" },
-  { href: "/businesses", label: "Businesses" },
-  { href: "/news", label: "News & Stories" },
+  { href: "/businesses", label: "Network" },
+  { href: "/news", label: "News" },
   { href: "/events", label: "Events" },
   { href: "/the-hide", label: "The Hide" },
   { href: "/about", label: "About" },

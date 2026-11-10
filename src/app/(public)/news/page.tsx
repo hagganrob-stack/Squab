@@ -9,7 +9,7 @@ import { EmptyState, Section, SectionHeader } from "@/components/ui/section";
 import { getEvents, getStories } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "News & Stories — what's happening across Squab",
+  title: "News — what's happening across Squab",
   description: "Squab news, business spotlights and upcoming events from across the Squab community.",
   alternates: { canonical: "/news" },
 };
@@ -31,7 +31,7 @@ export default async function StoriesPage() {
     <>
       <header className="container-page pb-4 pt-12 sm:pt-16">
         <span aria-hidden className="mb-4 block h-1 w-10 rounded-full bg-squab-500" />
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-squab-700">News &amp; Stories</p>
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-squab-700">Squab News</p>
         <h1 className="mt-3 max-w-4xl text-display font-extrabold">What’s happening across Squab.</h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-stone-muted">
           Squab news, business spotlights and upcoming events from across the Squab community.
@@ -61,7 +61,7 @@ export default async function StoriesPage() {
 
       {rest.length > 0 && (
       <Section aria-labelledby="latest">
-        <SectionHeader id="latest" title="Latest news & stories" />
+        <SectionHeader id="latest" title="Latest news" />
         <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {rest.slice(0, 6).map((s) => <StoryCard key={s.id} story={s} />)}
         </div>

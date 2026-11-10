@@ -60,7 +60,7 @@ export function SearchExplorer({ items }: { items: SearchItem[] }) {
         </ul>
         {query.trim() && results.length === 0 && (
           <p className="rounded-[var(--radius-card)] bg-white p-6 text-stone-muted ring-1 ring-line">
-            Nothing found. Try a broader term, or browse <Link className="font-semibold text-squab-700" href="/perks">perks</Link> and the <Link className="font-semibold text-squab-700" href="/businesses">directory</Link>.
+            Nothing found. Try a broader term, or browse <Link className="font-semibold text-squab-700" href="/perks">perks</Link> and the <Link className="font-semibold text-squab-700" href="/businesses">network</Link>.
           </p>
         )}
       </div>

@@ -25,7 +25,7 @@ export default async function EventsPage() {
             {upcoming.map((e) => <EventCard key={e.id} event={e} />)}
           </div>
         ) : (
-          <EmptyState title="No events scheduled right now" body="New events are announced here and in News & Stories — check back soon." />
+          <EmptyState title="No events scheduled right now" body="New events are announced here and in Squab News — check back soon." />
         )}
       </Section>
       {past.length > 0 && (

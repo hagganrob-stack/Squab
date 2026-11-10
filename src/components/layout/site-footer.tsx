@@ -6,8 +6,8 @@ const columns = [
     title: "Explore",
     links: [
       { href: "/perks", label: "Squab Perks" },
-      { href: "/businesses", label: "Business directory" },
-      { href: "/news", label: "News & Stories" },
+      { href: "/businesses", label: "The Network" },
+      { href: "/news", label: "News" },
       { href: "/events", label: "Events" },
     ],
   },
