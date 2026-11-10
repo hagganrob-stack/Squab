@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock, MapPin } from "lucide-react";
 import { Hero } from "@/components/homepage/hero";
+import { PadelBanner } from "@/components/homepage/padel-banner";
 import { OfferCard } from "@/components/perks/offer-card";
 import { StoryCard } from "@/components/stories/story-card";
 import { DateTile } from "@/components/events/event-card";
@@ -35,6 +36,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero hero={settings.hero} />
+      <PadelBanner />
 
       {/* Featured perks */}
       <Section aria-labelledby="perks-heading">
