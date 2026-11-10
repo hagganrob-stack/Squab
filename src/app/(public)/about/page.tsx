@@ -30,8 +30,8 @@ const family = [
   {
     name: "Squab Storage",
     strap: "Award-winning, independent self storage",
-    image: "/images/squab/bridgwater.webp",
-    alt: "Squab Storage's purpose-built facility in Bridgwater",
+    image: "/images/squab/storage-welcome.webp",
+    alt: "Orange storage unit doors behind a 'Welcome to Squab Storage' sign in a loading bay",
     body: "Squab Storage began in 2006, when Emlyn Evans and his late father Keith diversified the family farm near Leamington Spa. It has grown into one of the UK's most respected independent storage brands, with nearly 250,000 sq ft of capacity across Leamington Spa, Warwick, Evesham, Rubery, Stowmarket and Bridgwater. Sites are open 7 days a week, with CCTV, individual alarms and electronic access. Around 40% of customers are businesses, and more than 170 local businesses use the Leamington Spa site alone as part of their daily operations. Squab is a member of the Self Storage Association and has committed to clear, transparent pricing with no surprises.",
     facts: ["Founded 2006", "~250,000 sq ft", "170+ businesses at Leamington", "No.1 Independent in Europe — Evesham 2021, Leamington 2023"],
     href: "https://squabstorage.co.uk",
