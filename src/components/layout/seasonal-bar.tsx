@@ -3,16 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
+import { CHRISTMAS_ENDS } from "@/lib/season-dates";
 
 /** Last moment the Christmas notice is shown (normal hours resume 2 Jan 2027). */
-const ENDS = Date.parse("2027-01-02T00:00:00Z");
+const ENDS = Date.parse(CHRISTMAS_ENDS);
 const subscribe = () => () => {};
 
 /** Slim site-wide link to the Christmas opening times page, hidden once the season is over. */
 export function SeasonalBar() {
   const pathname = usePathname();
   const active = useSyncExternalStore(subscribe, () => Date.now() < ENDS, () => true);
-  if (!active || pathname === "/christmas") return null;
+  if (!active || pathname === "/christmas" || pathname === "/") return null;
   return (
     <div className="bg-ink text-white">
       <Link

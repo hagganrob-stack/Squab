@@ -84,6 +84,7 @@ export interface StoryRow {
   status: Story["status"];
   featured: boolean;
   published_at: string;
+  expires_at?: string | null;
   is_demo: boolean;
 }
 
@@ -190,6 +191,7 @@ export const mapStory = (r: StoryRow): Story => ({
   status: r.status,
   featured: r.featured,
   publishedAt: r.published_at,
+  expiresAt: opt(r.expires_at),
   isDemo: r.is_demo,
 });
 

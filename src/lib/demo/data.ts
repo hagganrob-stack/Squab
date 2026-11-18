@@ -493,6 +493,37 @@ export const offers: Offer[] = [
 
 export const stories: Story[] = [
   {
+    id: id(30, 8),
+    title: "Christmas opening times at Squab",
+    slug: "christmas-opening-times-2026",
+    standfirst: "The Squab office is open 9am–3pm on 24, 29, 30 and 31 December, and closed 25–28 December and New Year’s Day. Customer access stays 8am–8pm, seven days a week.",
+    heroImageUrl: "/images/squab/christmas-lights.webp",
+    heroImageAlt: "Colourful Christmas fairy lights glowing on a wooden floor",
+    authorName: "The Squab Connect team",
+    categoryId: cat("squab-news"),
+    format: "standard",
+    status: "published",
+    featured: true,
+    publishedAt: "2026-11-18T12:00:00Z",
+    expiresAt: "2027-01-02T00:00:00Z",
+    isDemo: false,
+    body: doc(
+      p(b("Here’s when the Squab office is open over Christmas and New Year.")),
+      p("Good news first: customer access to your unit stays 8am–8pm, seven days a week, right through the holidays, including on days when the office is closed."),
+      h2("Office opening times"),
+      ul(
+        [b("Thursday 24 December"), " (Christmas Eve): 9am–3pm"],
+        [b("Friday 25 to Monday 28 December"), ": closed"],
+        [b("Tuesday 29 to Thursday 31 December"), ": 9am–3pm"],
+        [b("Friday 1 January"), " (New Year’s Day): closed"],
+        [b("From Saturday 2 January"), ": back to normal"],
+      ),
+      p("Need anything before the break? Call 01926 88 22 82 or email ", a("enquiries@squab.co.uk", "mailto:enquiries@squab.co.uk"), " and we’ll get back to you as soon as we’re in."),
+      p("From all of us at Squab, thank you for a brilliant year, and have a very merry Christmas."),
+      cta("See the day-by-day times", "/christmas"),
+    ),
+  },
+  {
     id: id(30, 7),
     title: "Calling all speakers: share your expertise at Squab Networking",
     slug: "guest-speakers-wanted-squab-networking",

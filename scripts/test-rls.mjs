@@ -20,7 +20,10 @@ grant usage on schema public, auth, storage to anon, authenticated, service_role
 grant execute on all functions in schema auth to anon, authenticated;
 `;
 await db.exec(stub);
-const mig = readFileSync(`${root}/supabase/migrations/0001_initial_schema.sql`, "utf8").replace(/create extension[^;]+;/g, "");
+const mig = ["0001_initial_schema.sql", "0002_story_expiry.sql"]
+  .map((f) => readFileSync(`${root}/supabase/migrations/${f}`, "utf8"))
+  .join("\n")
+  .replace(/create extension[^;]+;/g, "");
 await db.exec("create extension citext;");
 await db.exec(mig);
 // Supabase grants table privileges to API roles by default.
@@ -107,8 +110,12 @@ err = null;
 try { await as("authenticated", u1, `update businesses set featured = not featured where id='${forge}'`); } catch (e) { err = e; }
 check("member cannot feature own business", !!err);
 
-const published = (await db.query("select count(*)::int n from stories where status = 'published' and published_at <= now()")).rows[0].n;
+const published = (await db.query("select count(*)::int n from stories where status = 'published' and published_at <= now() and (expires_at is null or expires_at > now())")).rows[0].n;
 r = await as("anon", null, "select count(*)::int n from stories");
 check("anon reads published stories", published > 0 && r.rows[0].n === published);
+await db.exec(`insert into stories (title, slug, category_id, status, published_at, expires_at)
+  select 'Expired notice', 'expired-notice', id, 'published', now() - interval '2 days', now() - interval '1 day' from categories limit 1`);
+r = await as("anon", null, "select count(*)::int n from stories where slug = 'expired-notice'");
+check("anon cannot read expired stories", r.rows[0].n === 0);
 r = await as("anon", null, "select count(*)::int n from newsletter_subscribers");
 check("anon cannot read subscribers", r.rows[0].n === 0);

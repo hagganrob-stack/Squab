@@ -154,6 +154,8 @@ export interface Story {
   status: StoryStatus;
   featured: boolean;
   publishedAt: string;
+  /** Hidden from the site once this time has passed, e.g. seasonal notices. */
+  expiresAt?: string;
   isDemo: boolean;
 }
 

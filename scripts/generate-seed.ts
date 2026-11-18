@@ -118,6 +118,7 @@ sql += insert(
     featured: s.featured,
     is_demo: true,
     published_at: s.publishedAt,
+    expires_at: s.expiresAt,
   })),
 );
 

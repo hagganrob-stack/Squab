@@ -9,22 +9,22 @@ type Flake = { left: number; size: number; duration: number; delay: number; drif
  * assistive tech, ignores clicks, skipped for people who prefer reduced
  * motion, and each flake falls twice before the snow stops.
  */
-export function Snowfall({ count = 60 }: { count?: number }) {
+export function Snowfall({ count = 120 }: { count?: number }) {
   const [flakes, setFlakes] = useState<Flake[]>([]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const n = window.innerWidth < 640 ? Math.round(count / 2) : count;
+    const n = window.innerWidth < 640 ? Math.round(count * 0.55) : count;
     const id = requestAnimationFrame(() =>
       setFlakes(
         Array.from({ length: n }, () => ({
           left: Math.random() * 100,
-          size: 6 + Math.random() * 14,
+          size: 8 + Math.random() * 14,
           duration: 9 + Math.random() * 9,
-          delay: Math.random() * 8,
+          delay: Math.random() * 10,
           drift: (Math.random() - 0.5) * 160,
           opacity: 0.75 + Math.random() * 0.25,
-          glyph: Math.random() < 0.45,
+          glyph: Math.random() < 0.85,
         })),
       ),
     );

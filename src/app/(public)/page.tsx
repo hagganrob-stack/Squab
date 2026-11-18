@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock, MapPin } from "lucide-react";
 import { Hero } from "@/components/homepage/hero";
 import { PadelBanner } from "@/components/homepage/padel-banner";
+import { ChristmasBanner } from "@/components/homepage/christmas-banner";
+import { isChristmasSeason } from "@/lib/season";
 import { OfferCard } from "@/components/perks/offer-card";
 import { StoryCard } from "@/components/stories/story-card";
 import { DateTile } from "@/components/events/event-card";
@@ -26,6 +28,7 @@ export default async function HomePage() {
     getStories(),
     getEvents(),
   ]);
+  const christmas = await isChristmasSeason();
   const community = businesses
     .filter((b) => !b.listingOnly)
     .sort((a, b) => Number(b.featured) - Number(a.featured))
@@ -36,6 +39,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero hero={settings.hero} />
+      {christmas && <ChristmasBanner />}
       <PadelBanner />
 
       {/* Featured perks */}

@@ -38,12 +38,12 @@ export default function ChristmasPage() {
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-ink text-white">
         <Image
-          src="/images/squab/christmas-tree.webp"
-          alt="A Christmas tree with gold and copper baubles and warm fairy lights"
+          src="/images/squab/christmas-lights.webp"
+          alt="Colourful Christmas fairy lights glowing on a wooden floor"
           fill
           priority
           sizes="100vw"
-          className="-z-20 object-cover object-[50%_45%]"
+          className="-z-20 object-cover object-center"
         />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/55 to-black/30 lg:bg-gradient-to-r lg:from-black/85 lg:via-black/50 lg:to-black/10" />
         <div className="container-page flex min-h-[30rem] flex-col justify-end py-14 lg:min-h-[34rem] lg:justify-center lg:py-20">

@@ -93,7 +93,8 @@ export async function loadStories(): Promise<Story[]> {
   cacheLife("hours");
   cacheTag("stories");
   const now = new Date().toISOString();
-  const isLive = (s: Story) => s.status === "published" && s.publishedAt <= now;
+  const isLive = (s: Story) =>
+    s.status === "published" && s.publishedAt <= now && (!s.expiresAt || s.expiresAt > now);
   const sort = (list: Story[]) => [...list].sort((x, y) => y.publishedAt.localeCompare(x.publishedAt));
 
   if (!isSupabaseConfigured) return sort(demo.stories.filter(isLive));
@@ -102,6 +103,7 @@ export async function loadStories(): Promise<Story[]> {
     .select("*")
     .eq("status", "published")
     .lte("published_at", now)
+    .or(`expires_at.is.null,expires_at.gt.${now}`)
     .order("published_at", { ascending: false });
   if (error) throw new Error(`Failed to load stories: ${error.message}`);
   return (data as StoryRow[]).map(mapStory);
