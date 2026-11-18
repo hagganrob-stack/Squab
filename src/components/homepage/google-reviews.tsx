@@ -2,6 +2,7 @@ import { ArrowUpRight, Star } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { cn, initials } from "@/lib/utils";
 import { getGoogleReviews, googleReviewUrl, type GoogleReview } from "@/lib/google-reviews";
+import { manualGoogleReviews } from "@/lib/content/google-reviews";
 
 /** Google's four-colour "G" mark, used to attribute reviews to Google. */
 export function GoogleG({ className }: { className?: string }) {
@@ -57,7 +58,8 @@ function ReviewCard({ review }: { review: GoogleReview }) {
 }
 
 export async function GoogleReviews() {
-  const data = await getGoogleReviews();
+  const live = await getGoogleReviews();
+  const data = live?.reviews.length ? live : manualGoogleReviews.reviews.length ? manualGoogleReviews : live;
   const reviews = data?.reviews.slice(0, 4) ?? [];
   const writeUrl = googleReviewUrl();
   const hasReviews = reviews.length > 0;
