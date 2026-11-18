@@ -17,7 +17,7 @@ const columns = [
     links: [
       { href: "/about", label: "About Squab Connect" },
       { href: "/about#businesses", label: "List your business" },
-      { href: "/register", label: "Create an account" },
+      { href: "mailto:enquiries@squab.co.uk?subject=Squab%20Connect%20offer", label: "Promote an offer" },
     ],
   },
   {

@@ -54,10 +54,10 @@ src/app/
     news/           /news, /news/[slug]
     events/            /events, /events/[slug]
     about/  search/
-  (auth)/              /login, /register            (Phase 3)
-  account/             /account, /account/saved, /account/profile  (Phase 3)
-  business/            /business/dashboard, profile, offers, analytics (Phase 3)
-  admin/               /admin/** (Phase 3–5)
+  meet/  the-hide/
+  (No customer or business logins: businesses email enquiries@squab.co.uk with
+  offers and the Squab team publishes them. /login, /register and /account
+  redirect to /about#businesses.)
   api/                 analytics beacons, newsletter webhooks
   sitemap.ts robots.ts manifest.ts
 ```

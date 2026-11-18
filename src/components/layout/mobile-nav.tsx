@@ -11,7 +11,6 @@ const items = [
   { href: "/perks", label: "Perks", icon: Tag },
   { href: "/businesses", label: "Network", icon: Compass },
   { href: "/news", label: "News", icon: Newspaper },
-  // Account returns here when sign-in launches (Phase 3); it stays in the desktop header.
   { href: "/the-hide", label: "The Hide", icon: Coffee },
 ] as const;
 

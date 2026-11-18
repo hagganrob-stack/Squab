@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, UserRound } from "lucide-react";
+import { Search } from "lucide-react";
 import { Wordmark } from "./wordmark";
 import { DesktopNav } from "./desktop-nav";
 
@@ -16,13 +16,6 @@ export function SiteHeader() {
           >
             <Search aria-hidden className="size-4" />
             <span className="sr-only xl:not-sr-only">Search</span>
-          </Link>
-          <Link
-            href="/account"
-            className="hidden h-10 items-center gap-2 rounded-full bg-ink px-3 text-sm xl:px-4 font-semibold text-white transition-colors hover:bg-ink-soft lg:inline-flex"
-          >
-            <UserRound aria-hidden className="size-4" />
-            <span className="sr-only xl:not-sr-only">Account</span>
           </Link>
         </div>
       </div>

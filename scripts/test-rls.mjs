@@ -107,7 +107,8 @@ err = null;
 try { await as("authenticated", u1, `update businesses set featured = not featured where id='${forge}'`); } catch (e) { err = e; }
 check("member cannot feature own business", !!err);
 
+const published = (await db.query("select count(*)::int n from stories where status = 'published' and published_at <= now()")).rows[0].n;
 r = await as("anon", null, "select count(*)::int n from stories");
-check("anon reads published stories", r.rows[0].n === 6);
+check("anon reads published stories", published > 0 && r.rows[0].n === published);
 r = await as("anon", null, "select count(*)::int n from newsletter_subscribers");
 check("anon cannot read subscribers", r.rows[0].n === 0);

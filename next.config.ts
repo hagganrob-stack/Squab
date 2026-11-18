@@ -31,6 +31,10 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/network", destination: "/businesses", permanent: false },
+      // Customer accounts were dropped: businesses email the Squab team instead.
+      { source: "/login", destination: "/about#businesses", permanent: true },
+      { source: "/register", destination: "/about#businesses", permanent: true },
+      { source: "/account/:path*", destination: "/about#businesses", permanent: true },
       { source: "/stories", destination: "/news", permanent: true },
       { source: "/stories/:slug", destination: "/news/:slug", permanent: true },
       // The Hide has its own page rather than a standard directory profile.

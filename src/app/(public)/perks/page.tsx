@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Search, Smartphone, Sparkles } from "lucide-react";
+import { Mail, Search, Smartphone, Sparkles } from "lucide-react";
 import { PerksExplorer } from "@/components/perks/perks-explorer";
 import { OfferCard } from "@/components/perks/offer-card";
+import { ButtonLink } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { getOffers } from "@/lib/data";
 
@@ -61,6 +62,15 @@ export default async function PerksPage() {
         >
           <PerksExplorer offers={offers} />
         </Suspense>
+        <div className="mt-12 rounded-[var(--radius-card)] bg-ink p-6 text-white sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-8">
+          <div>
+            <h2 className="text-xl font-extrabold">Run a business at Squab? Promote your offer here.</h2>
+            <p className="mt-1 text-white/75">Email the Squab team with your offer and we&rsquo;ll check it and publish it for you.</p>
+          </div>
+          <ButtonLink href="mailto:enquiries@squab.co.uk?subject=Squab%20Connect%20offer" className="mt-4 shrink-0 sm:mt-0">
+            <Mail aria-hidden /> enquiries@squab.co.uk
+          </ButtonLink>
+        </div>
       </Section>
     </>
   );

@@ -157,15 +157,15 @@ export default function AboutPage() {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-squab-700">For Squab businesses</p>
             <h2 id="for-businesses" className="mt-3 text-headline font-extrabold">Run a business from Squab? Make yourself known.</h2>
             <p className="mt-4 text-lg leading-relaxed text-stone-muted">
-              Get a free profile in the Network, share an exclusive offer with the community and be considered for a spotlight in Squab News.
+              Have an offer you&rsquo;d like to promote to the Squab community, or want a profile in the Network? Just email the Squab team and we&rsquo;ll take care of the rest. There&rsquo;s no account or login to set up.
             </p>
           </div>
           <ol className="space-y-4">
             {[
-              ["Request access", "Tell us about your business and your connection with Squab."],
-              ["We review your request", "The Squab team checks every business before it goes live."],
-              ["Build your profile", "Add your logo, photos, services and contact details from your dashboard."],
-              ["Share a perk", "Submit an offer for the community and we'll approve it and publish it for you."],
+              ["Email us", "Send your offer and a few lines about your business to enquiries@squab.co.uk."],
+              ["We check the details", "The Squab team reviews every business and offer before it goes live."],
+              ["We publish it for you", "We add your perk, profile, logo and photos to Squab Connect."],
+              ["Share it", "Point your customers to your page and the Squab Perks listing."],
             ].map(([title, body], i) => (
               <li key={title} className="flex gap-4 rounded-[var(--radius-card)] bg-paper p-5 ring-1 ring-line">
                 <span className="grid size-9 shrink-0 place-items-center rounded-full bg-ink font-display font-extrabold text-white">{i + 1}</span>
@@ -175,8 +175,8 @@ export default function AboutPage() {
           </ol>
         </div>
         <div className="mt-10 rounded-[var(--radius-card)] bg-squab-50 p-6 sm:flex sm:items-center sm:justify-between">
-          <p className="font-semibold text-squab-900">Online business registration opens soon. In the meantime, speak to the Squab team at your facility.</p>
-          <ButtonLink href="/register" className="mt-4 sm:mt-0">Register interest <ArrowRight aria-hidden /></ButtonLink>
+          <p className="font-semibold text-squab-900">Got an offer to promote? Email <a className="underline underline-offset-4" href="mailto:enquiries@squab.co.uk?subject=Squab%20Connect%20offer">enquiries@squab.co.uk</a>.</p>
+          <ButtonLink href="mailto:enquiries@squab.co.uk?subject=Squab%20Connect%20offer" className="mt-4 shrink-0 sm:mt-0">Email the team <ArrowRight aria-hidden /></ButtonLink>
         </div>
       </Section>
 
