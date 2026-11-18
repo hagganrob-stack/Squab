@@ -26,15 +26,15 @@ function Stars({ rating, className }: { rating: number; className?: string }) {
   );
 }
 
-function ReviewCard({ review }: { review: GoogleReview }) {
+function ReviewCard({ review, className }: { review: GoogleReview; className?: string }) {
   return (
-    <figure className="flex flex-col rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line">
+    <figure className={cn("flex flex-col rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line", className)}>
       <div className="flex items-center justify-between gap-3">
         <Stars rating={review.rating} />
         <GoogleG className="size-5 shrink-0" />
       </div>
       <blockquote className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-ink-soft">
-        <p className="line-clamp-6">{review.text}</p>
+        <p className="whitespace-pre-line">{review.text}</p>
       </blockquote>
       <figcaption className="mt-5 flex items-center gap-3">
         {review.authorPhoto ? (
@@ -60,7 +60,7 @@ function ReviewCard({ review }: { review: GoogleReview }) {
 export async function GoogleReviews() {
   const live = await getGoogleReviews();
   const data = live?.reviews.length ? live : manualGoogleReviews.reviews.length ? manualGoogleReviews : live;
-  const reviews = data?.reviews.slice(0, 4) ?? [];
+  const reviews = [...(data?.reviews.slice(0, 3) ?? [])].sort((a, b) => b.text.length - a.text.length);
   const writeUrl = googleReviewUrl();
   const hasReviews = reviews.length > 0;
 
@@ -116,13 +116,11 @@ export async function GoogleReviews() {
         </div>
       </div>
       {hasReviews ? (
-        <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
-          <div className="grid gap-5 sm:grid-cols-2">
-            {reviews.map((r, i) => (
-              <ReviewCard key={`${r.author}-${i}`} review={r} />
-            ))}
-          </div>
-          {cta}
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {reviews.map((r, i) => (
+            <ReviewCard key={`${r.author}-${i}`} review={r} className={i === 0 && reviews.length === 3 ? "lg:row-span-2" : undefined} />
+          ))}
+          <div className={cn("grid md:col-span-2 lg:col-span-1", reviews.length === 3 && "lg:col-start-3 lg:row-span-2 lg:row-start-1")}>{cta}</div>
         </div>
       ) : (
         cta
