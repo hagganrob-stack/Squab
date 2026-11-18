@@ -3,6 +3,7 @@ import { ArrowRight, CalendarDays, Clock, MapPin } from "lucide-react";
 import { Hero } from "@/components/homepage/hero";
 import { PadelBanner } from "@/components/homepage/padel-banner";
 import { ChristmasBanner } from "@/components/homepage/christmas-banner";
+import { GoogleReviews } from "@/components/homepage/google-reviews";
 import { isChristmasSeason } from "@/lib/season";
 import { OfferCard } from "@/components/perks/offer-card";
 import { StoryCard } from "@/components/stories/story-card";
@@ -159,6 +160,9 @@ export default async function HomePage() {
           </div>
         </div>
       </Section>
+
+      {/* Google reviews */}
+      <GoogleReviews />
     </>
   );
 }
