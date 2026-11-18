@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Mail, Phone } from "lucide-react";
+import { KeyRound, Mail, Phone } from "lucide-react";
 import { Snowfall } from "@/components/shared/snowfall";
 import { ButtonLink } from "@/components/ui/button";
 import { Section, SectionHeader } from "@/components/ui/section";
@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Christmas opening times 2026 at Squab",
   description:
-    "Squab office opening times over Christmas and New Year 2026: open 9am–3pm on 24, 29, 30 and 31 December, closed 25–28 December and New Year's Day.",
+    "Squab Christmas and New Year 2026: customer access 8am–8pm every day; office open 9am–3pm on 24, 29, 30 and 31 December, closed 25–28 December and New Year's Day.",
   alternates: { canonical: "/christmas" },
 };
 
@@ -54,7 +54,7 @@ export default function ChristmasPage() {
               Festive <span className="text-squab-400">opening times</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
-              Here&rsquo;s when the Squab office is open over Christmas and New Year. From all of us at Squab, thank you for a brilliant year, and have a very merry Christmas.
+              Here&rsquo;s when the Squab office is open over Christmas and New Year. Customer access to your unit stays 8am to 8pm, seven days a week, right through the holidays. From all of us at Squab, thank you for a brilliant year, and have a very merry Christmas.
             </p>
           </div>
         </div>
@@ -62,10 +62,11 @@ export default function ChristmasPage() {
 
       {/* Summary strip */}
       <section aria-label="At a glance" className="bg-squab-500 text-ink">
-        <div className="container-page grid gap-4 py-6 sm:grid-cols-3">
+        <div className="container-page grid grid-cols-2 gap-4 py-6 lg:grid-cols-4">
           {[
-            ["9am – 3pm", "24, 29, 30 & 31 December"],
-            ["Closed", "25–28 December & 1 January"],
+            ["8am – 8pm", "Customer access, 7 days a week"],
+            ["9am – 3pm", "Office: 24, 29, 30 & 31 December"],
+            ["Office closed", "25–28 December & 1 January"],
             ["Back to normal", "from Saturday 2 January"],
           ].map(([value, label]) => (
             <div key={label}>
@@ -76,9 +77,24 @@ export default function ChristmasPage() {
         </div>
       </section>
 
+      {/* Customer access */}
+      <section aria-labelledby="access" className="container-page pt-10 sm:pt-14">
+        <div className="flex flex-col gap-4 rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line sm:flex-row sm:items-center sm:p-8">
+          <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-squab-500 text-ink">
+            <KeyRound aria-hidden className="size-7" />
+          </span>
+          <div>
+            <h2 id="access" className="text-2xl font-extrabold">Customer access stays 8am – 8pm, 7 days a week</h2>
+            <p className="mt-1 text-stone-muted">
+              You can still get to your unit as normal throughout Christmas and New Year, including on days when the office is closed.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Day by day */}
-      <Section aria-labelledby="days">
-        <SectionHeader id="days" eyebrow="Day by day" title="Office opening times" description="Times are for the Squab office at Harbury Lane, Leamington Spa." />
+      <Section aria-labelledby="days" className="pt-10 sm:pt-12">
+        <SectionHeader id="days" eyebrow="Day by day" title="Office opening times" description="Times are for the Squab office at Harbury Lane, Leamington Spa. Customer access is unaffected." />
         <ol className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {days.map((d) => (
             <li
