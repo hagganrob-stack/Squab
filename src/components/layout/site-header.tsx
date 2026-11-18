@@ -2,13 +2,15 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import { Wordmark } from "./wordmark";
 import { DesktopNav } from "./desktop-nav";
+import { getMegaMenuData } from "./mega-menu-data";
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const menu = await getMegaMenuData();
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
         <Wordmark />
-        <DesktopNav />
+        <DesktopNav menu={menu} />
         <div className="flex items-center gap-1.5">
           <Link
             href="/search"

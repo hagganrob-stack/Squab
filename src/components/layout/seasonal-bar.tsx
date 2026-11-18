@@ -20,7 +20,10 @@ export function SeasonalBar() {
         href="/christmas"
         className="container-page flex h-9 items-center justify-center gap-2 text-sm font-semibold hover:text-squab-300"
       >
-        <span aria-hidden>❄</span> Christmas opening times<span className="hidden sm:inline">: see when the Squab office is open</span>
+        <span aria-hidden>❄</span>
+        <span>
+          Christmas opening times<span className="hidden sm:inline">: see when the Squab office is open</span>
+        </span>
         <span aria-hidden>→</span>
       </Link>
     </div>
