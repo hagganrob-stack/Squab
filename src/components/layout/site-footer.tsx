@@ -10,6 +10,7 @@ const columns = [
       { href: "/news", label: "News" },
       { href: "/events", label: "Events" },
       { href: "/meet", label: "Meeting rooms" },
+      { href: "/christmas", label: "Christmas opening times" },
     ],
   },
   {

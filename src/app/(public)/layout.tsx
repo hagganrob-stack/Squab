@@ -1,10 +1,12 @@
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { SeasonalBar } from "@/components/layout/seasonal-bar";
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <SeasonalBar />
       <SiteHeader />
       <main id="main" className="min-h-[60vh]">
         {children}

@@ -138,3 +138,11 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Christmas page snowfall (see components/shared/snowfall.tsx) */
+@keyframes snowfall {
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: var(--flake-opacity, 0.9); }
+  90% { opacity: var(--flake-opacity, 0.9); }
+  100% { transform: translate3d(var(--flake-drift, 0px), 105vh, 0) rotate(240deg); opacity: 0; }
+}
