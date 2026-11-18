@@ -23,7 +23,7 @@ export function Snowfall({ count = 60 }: { count?: number }) {
           duration: 9 + Math.random() * 9,
           delay: Math.random() * 8,
           drift: (Math.random() - 0.5) * 160,
-          opacity: 0.5 + Math.random() * 0.5,
+          opacity: 0.75 + Math.random() * 0.25,
           glyph: Math.random() < 0.45,
         })),
       ),
@@ -38,14 +38,14 @@ export function Snowfall({ count = 60 }: { count?: number }) {
       {flakes.map((f, i) => (
         <span
           key={i}
-          className="absolute top-0 block select-none leading-none text-white drop-shadow-[0_0_4px_rgba(0,0,0,0.25)]"
+          className="absolute top-0 block select-none leading-none text-[#a9cbe6] [filter:drop-shadow(0_0_1px_rgba(22,48,82,0.55))_drop-shadow(0_1px_3px_rgba(22,48,82,0.3))]"
           style={{
             left: `${f.left}%`,
             fontSize: f.glyph ? f.size * 1.4 : undefined,
             width: f.glyph ? undefined : f.size * 0.6,
             height: f.glyph ? undefined : f.size * 0.6,
             borderRadius: f.glyph ? undefined : "9999px",
-            background: f.glyph ? undefined : "white",
+            background: f.glyph ? undefined : "radial-gradient(circle at 35% 35%, #ffffff 0%, #d6e8f7 55%, #a9cbe6 100%)",
             animation: `snowfall ${f.duration}s linear ${f.delay}s 2 both`,
             ["--flake-drift" as string]: `${f.drift}px`,
             ["--flake-opacity" as string]: f.opacity,
