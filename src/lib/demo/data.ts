@@ -431,6 +431,21 @@ export const businesses: Business[] = [
     status: "active",
     isDemo: false,
   },
+  {
+    id: id(10, 43),
+    name: "Formatek Ltd",
+    slug: "formatek",
+    kind: "Engineering design",
+    tagline: "Engineering design for industrial processes and production.",
+    description:
+      "Formatek Ltd (formerly Protoform Industries) is an engineering design business based at Squab Hall, working on design for industrial processes and production.",
+    services: ["Engineering design", "Industrial process design", "Production design"],
+    social: {},
+    location: "Squab Hall",
+    featured: false,
+    status: "active",
+    isDemo: false,
+  },
   // Businesses based at Squab (list supplied by Squab). Names only until
   // details are verified — see listingOnly.
   { id: id(10, 22), name: "Croco Print", slug: "croco-print", kind: "", tagline: "", description: "", services: [], social: {}, featured: false, status: "active", isDemo: false, listingOnly: true },
@@ -453,7 +468,6 @@ export const businesses: Business[] = [
   { id: id(10, 40), name: "Blue Diamond", slug: "blue-diamond", kind: "", tagline: "", description: "", services: [], social: {}, featured: false, status: "active", isDemo: false, listingOnly: true },
   { id: id(10, 41), name: "Firesafetysolutions UK", slug: "firesafetysolutions-uk", kind: "", tagline: "", description: "", services: [], social: {}, featured: false, status: "active", isDemo: false, listingOnly: true },
   { id: id(10, 42), name: "Entrust Care Partnership", slug: "entrust-care-partnership", kind: "", tagline: "", description: "", services: [], social: {}, featured: false, status: "active", isDemo: false, listingOnly: true },
-  { id: id(10, 43), name: "Protoform Industries", slug: "protoform-industries", kind: "", tagline: "", description: "", services: [], social: {}, featured: false, status: "active", isDemo: false, listingOnly: true },
   { id: id(10, 44), name: "Four Walls Building Company", slug: "four-walls-building-company", kind: "", tagline: "", description: "", services: [], social: {}, featured: false, status: "active", isDemo: false, listingOnly: true },
   { id: id(10, 46), name: "PAWS Therapy Dog Training", slug: "paws-therapy-dog-training", kind: "", tagline: "", description: "", services: [], social: {}, featured: false, status: "active", isDemo: false, listingOnly: true },
   { id: id(10, 47), name: "HWD Solutions", slug: "hwd-solutions", kind: "", tagline: "", description: "", services: [], social: {}, featured: false, status: "active", isDemo: false, listingOnly: true },
