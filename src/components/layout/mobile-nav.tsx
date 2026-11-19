@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Coffee, Compass, Home, Newspaper, Tag } from "lucide-react";
+import { CalendarDays, Coffee, Compass, Newspaper, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { isActive } from "./nav-items";
 
 const items = [
-  { href: "/", label: "Home", icon: Home },
+  // No Home tab: the logo in the header links home.
   { href: "/perks", label: "Perks", icon: Tag },
   { href: "/businesses", label: "Network", icon: Compass },
   { href: "/news", label: "News", icon: Newspaper },
+  { href: "/events", label: "Events", icon: CalendarDays },
   { href: "/the-hide", label: "The Hide", icon: Coffee },
 ] as const;
 
