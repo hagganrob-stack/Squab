@@ -8,6 +8,7 @@ import { Media } from "@/components/ui/media";
 import { getBusinessBySlug, getOffersForBusiness } from "@/lib/data";
 import { hide } from "@/lib/content/the-hide";
 import { cn, siteUrl } from "@/lib/utils";
+import { isChristmasSeason } from "@/lib/season";
 
 export const metadata: Metadata = {
   title: "The Hide Café at Squab Hall Farm, Leamington Spa",
@@ -34,6 +35,7 @@ export default async function TheHidePage() {
   const business = await getBusinessBySlug("the-hide-cafe");
   const perks = business ? await getOffersForBusiness(business.id) : [];
   const perk = perks[0];
+  const christmas = await isChristmasSeason();
 
   return (
     <>
@@ -150,6 +152,34 @@ export default async function TheHidePage() {
           </div>
         </div>
       </section>
+
+      {/* Christmas (shown until normal hours resume on 2 January) */}
+      {christmas && (
+        <section className="bg-hide-black py-14 text-white sm:py-20" aria-labelledby="christmas-hide">
+          <div className="container-page grid items-center gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+            <div>
+              <Bar />
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-hide-orange"><span aria-hidden>❄ </span>Christmas at The Hide</p>
+              <h2 id="christmas-hide" className="text-headline font-extrabold">Twinkling lights and a warm welcome</h2>
+              <p className="mt-4 text-lg leading-relaxed text-white/80">
+                The Hide is dressed for Christmas. Escape the cold with a festive coffee, catch up with friends or take a break from the office in our cosy, fairy-lit café.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="#visit" size="lg" className="bg-hide-orange text-black hover:bg-[#f7a443]">Opening hours <ArrowRight aria-hidden /></ButtonLink>
+                <ButtonLink href="/christmas" size="lg" variant="onDark">Squab Christmas opening times</ButtonLink>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[var(--radius-card)]">
+                <Image src="/images/partners/the-hide-christmas-interior.webp" alt="The Hide’s café decorated for Christmas, with a lit tree by the door" fill sizes="(min-width: 1024px) 28vw, 50vw" className="object-cover" />
+              </div>
+              <div className="relative mt-10 aspect-[3/4] overflow-hidden rounded-[var(--radius-card)]">
+                <Image src="/images/partners/the-hide-christmas-tree.webp" alt="Red and silver baubles on The Hide’s Christmas tree" fill sizes="(min-width: 1024px) 28vw, 50vw" className="object-cover" />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Gallery */}
       <section className="pb-14 sm:pb-20" aria-labelledby="gallery">
