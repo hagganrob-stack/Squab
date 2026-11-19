@@ -128,7 +128,7 @@ export const businesses: Business[] = [
       "A friendly independent café at Squab Hall Farm, serving freshly prepared breakfasts, lunches, homemade treats and great coffee in peaceful rural surroundings.",
     services: ["Breakfast and lunch", "Coffee, cakes and treats", "Catering", "The Hideaway private room"],
     logoUrl: img("the-hide-logo.png"),
-    coverImageUrl: img("the-hide-cafe-cover.webp"),
+    coverImageUrl: img("the-hide-garden-pergola.webp"),
     website: "https://squabhallfarm.co.uk/services/cafe/",
     email: "thehide@squab.co.uk",
     phone: "07939 411269",

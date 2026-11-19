@@ -16,6 +16,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/the-hide" },
 };
 
+const gallery = [
+  { src: "/images/partners/the-hide-garden-pergola.webp", alt: "The Hide’s garden with a timber pergola, orange chairs and flowering beds", position: "50% 60%" },
+  { src: "/images/partners/the-hide-coffee.webp", alt: "A cappuccino with biscuits in front of a framed photo of Chesterton Windmill", position: "50% 70%" },
+  { src: "/images/partners/the-hide-sausage-rolls.webp", alt: "Freshly baked sausage rolls on a wooden board", position: "50% 55%" },
+  { src: "/images/partners/the-hide-garden-lavender.webp", alt: "Lavender and alliums in front of The Hide’s garden seating", position: "50% 55%" },
+  { src: "/images/partners/the-hide-terrace.webp", alt: "The Hide’s covered terrace in winter sunshine", position: "50% 65%" },
+];
+
 const mailto = (subject: string) => `mailto:${hide.email}?subject=${encodeURIComponent(subject)}`;
 
 function Bar({ className }: { className?: string }) {
@@ -139,6 +147,35 @@ export default async function TheHidePage() {
               <p key={para} className="mt-4 text-lg leading-relaxed text-ink-soft">{para}</p>
             ))}
             <p className="mt-6 text-sm font-semibold uppercase tracking-[0.12em] text-stone-muted">{hide.values.join(" • ")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="pb-14 sm:pb-20" aria-labelledby="gallery">
+        <div className="container-page">
+          <Bar />
+          <h2 id="gallery" className="text-headline font-extrabold">Take a look around</h2>
+          <p className="mt-3 max-w-2xl text-lg text-stone-muted">A sunny garden, a cosy covered terrace and plenty of good things to eat and drink.</p>
+          <div className="mt-10 grid auto-rows-[180px] grid-cols-2 gap-3 sm:auto-rows-[240px] md:grid-cols-4 md:gap-4">
+            {gallery.map((g, i) => (
+              <figure
+                key={g.src}
+                className={cn(
+                  "group relative overflow-hidden rounded-[var(--radius-card)] bg-mist",
+                  i === 0 && "col-span-2 row-span-2",
+                )}
+              >
+                <Image
+                  src={g.src}
+                  alt={g.alt}
+                  fill
+                  sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: g.position }}
+                />
+              </figure>
+            ))}
           </div>
         </div>
       </section>
