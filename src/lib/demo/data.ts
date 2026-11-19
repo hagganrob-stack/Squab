@@ -19,7 +19,7 @@ import type {
   Offer,
   Story,
 } from "../../types/content";
-import { a, b, cta, doc, h2, i, img as image, p, ul } from "./rich.ts";
+import { a, b, cta, doc, h2, h3, i, img as image, p, ul } from "./rich.ts";
 
 const id = (group: number, n: number) =>
   `00000000-0000-4000-8000-${String(group).padStart(4, "0")}${String(n).padStart(8, "0")}`;
@@ -958,6 +958,63 @@ export const offers: Offer[] = [
 /* ------------------------------------------------------------------ */
 
 export const stories: Story[] = [
+  {
+    id: id(30, 9),
+    title: "Lighting Up Warwickshire: Christmas Tractor Runs Return for 2026",
+    slug: "christmas-tractor-runs-warwickshire-2026",
+    standfirst: "Christmas lights, tractors and community spirit – Warwickshire’s festive tractor runs are back, bringing a little magic to our towns and villages while raising money for local charities.",
+    heroImageUrl: "/images/events/christmas-tractor-runs-2026.webp",
+    heroImageAlt: "A convoy of tractors decorated with Christmas lights driving through a Warwickshire village at dusk",
+    authorName: "Windmill Farming",
+    categoryId: cat("events"),
+    format: "standard",
+    status: "published",
+    featured: true,
+    publishedAt: "2026-11-19T09:00:00Z",
+    isDemo: false,
+    body: doc(
+      p("Thousands of lights will adorn Warwickshire tractors again this December, as festive convoys make their way through the beautiful Warwickshire countryside, raising funds for local charities and bringing together the farming community, tractor enthusiasts and local families."),
+      p("From small rural villages to busy town centres, these spectacular displays have become a much-loved part of the Christmas calendar. With tractors decorated in colourful lights, festive characters and Christmas displays, they offer a wonderful opportunity for communities to come together and celebrate the festive season."),
+      h2("How did Christmas tractor runs begin?"),
+      p("Although illuminated Christmas tractor runs have become increasingly popular in recent years, their origins can be traced back to the tradition of vintage tractor enthusiasts coming together for organised road runs and community events."),
+      p("The National Vintage Tractor and Engine Club was established in the 1970s, helping to bring together enthusiasts keen to celebrate and preserve agricultural machinery. Over time, tractor gatherings evolved into charity events, with festive decorations and Christmas lights adding a seasonal twist."),
+      p("Today, Christmas tractor runs take place across the UK, organised by farmers, Young Farmers’ Clubs, agricultural associations and local volunteers."),
+      p("While the exact origins of the first illuminated Christmas tractor run are unclear, their purpose today is unmistakable: bringing communities together, supporting good causes and celebrating the people and machinery at the heart of British farming."),
+      h2("Where can you see Warwickshire’s Christmas tractor runs in 2026?"),
+      p("There are several opportunities to enjoy these festive spectacles across Warwickshire this December."),
+      h3("Norton Lindsey Christmas Tractor Run – 5th & 6th December"),
+      p("The Norton Lindsey Christmas Tractor Run returns for two evenings, taking in some of Warwickshire’s most picturesque villages."),
+      ul(
+        [b("Saturday 5th December:"), " The route will travel from Norton Lindsey through Claverdon, Henley-in-Arden, Wootton Wawen, Bearley and Snitterfield, before finishing at The New Inn in Norton Lindsey."],
+        [b("Sunday 6th December:"), " The tractors will head towards Warwick, Hatton Park and Shrewley, bringing festive cheer to more communities along the way."],
+      ),
+      p("For the latest route information and timings, visit the ", a("Norton Lindsey Christmas Tractors Facebook page", "https://www.facebook.com/nortonlindseyxmastractors/"), "."),
+      h3("Sheepy Ploughing Association Christmas Tractor Run – 11th & 12th December"),
+      p("The Sheepy Ploughing Association is once again organising its popular two-night Christmas tractor run, with more than 50 illuminated tractors expected to take part."),
+      p("The event will travel through communities across north Warwickshire and the surrounding area, including Atherstone, Nuneaton, Bedworth and Coventry."),
+      p("The precise routes and timings will be available from the organisers nearer the event."),
+      p("For more information, visit ", a("Sheepy Ploughing Association’s Christmas Tractor Run page", "https://sheepyploughing.co.uk/christmas-tractor-run/"), "."),
+      h3("Warwickshire Young Farmers Christmas Tractor Run – 15th December"),
+      p("Warwickshire Young Farmers will be bringing its illuminated tractor run back to the county on Tuesday 15th December."),
+      p("This will take place between 5.00 and 8.30 pm. The route is still to be confirmed, so keep an eye on the ", a("WFYFC Tractor Run 2026", "https://www.facebook.com/groups/599372149173729/user/61570819049414/"), " Facebook page for updates."),
+      h3("Southam Christmas Tractor Run – 19th December"),
+      p("Rounding off the festive tractor runs is the Southam Christmas Tractor Run on Saturday 19th December."),
+      p("Starting from Dallas Burston Polo Club, the illuminated tractors will set off at 6pm, travelling through Southam and the surrounding villages."),
+      p("The event is raising funds for Molly Ollys, a Warwickshire-based charity supporting children with life-threatening illnesses and their families."),
+      p("Further information, including the confirmed route, will be available on the ", a("Southam Christmas Tractor Run", "https://www.facebook.com/events/1761163981857074"), " Facebook page."),
+      h2("More than just Christmas lights"),
+      p("While the decorated tractors are undoubtedly the main attraction, these events represent something much more important."),
+      p("They provide an opportunity for the farming community to connect with the wider public, particularly at a time when many people have little direct involvement with agriculture."),
+      p("They also highlight the generosity and community spirit that exists throughout the farming industry. Behind every tractor run are farmers, volunteers, organisers and supporters giving their time, decorating their machinery and helping to raise funds for charities that make a real difference."),
+      p("For children, seeing a convoy of brightly lit tractors travelling through their village can be a magical experience. For farmers, it is an opportunity to celebrate their industry, support their communities and enjoy some festive fun."),
+      h2("Celebrating Warwickshire’s farming community"),
+      p("At Windmill Farming, we are proud to be part of Warwickshire’s agricultural community and recognise the important contribution farmers make, not only to food production and the countryside, but also to the towns and villages around them."),
+      p("Christmas tractor runs are a wonderful example of that community spirit in action."),
+      p("So, wrap up warm, find a safe spot along one of the routes and enjoy the spectacle. And if you can, please consider making a donation to support the fantastic charities involved."),
+      p("From everyone at Windmill Farming, we wish you a very Merry Christmas and a happy and prosperous New Year!"),
+      p(i("Please note that routes and timings may change. We recommend checking the organisers’ Facebook pages before travelling.")),
+    ),
+  },
   {
     id: id(30, 7),
     title: "Calling all speakers: share your expertise at Squab Networking",
