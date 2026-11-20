@@ -9,7 +9,7 @@ export function Section({
 }: React.ComponentProps<"section">) {
   return (
     <section className={cn("py-14 sm:py-20", className)} {...props}>
-      <div className="container-page">{children}</div>
+      <div className="container-page reveal">{children}</div>
     </section>
   );
 }

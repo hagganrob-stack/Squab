@@ -146,3 +146,38 @@
   90% { opacity: var(--flake-opacity, 0.9); }
   100% { transform: translate3d(var(--flake-drift, 0px), 105vh, 0) rotate(240deg); opacity: 0; }
 }
+
+/* ---------- Motion (all switched off by prefers-reduced-motion above) ---------- */
+
+/* Slow cinematic zoom on hero photos */
+@keyframes ken-burns {
+  from { transform: scale(1.12) translate3d(1.5%, 1%, 0); }
+  to { transform: scale(1) translate3d(0, 0, 0); }
+}
+.ken-burns { animation: ken-burns 18s cubic-bezier(0.2, 0.6, 0.2, 1) both; }
+
+/* Staggered entrance for hero copy */
+@keyframes rise-in {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: none; }
+}
+.rise-in { animation: rise-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 120ms + 150ms); }
+
+/* Endless logo carousel */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee { animation: marquee var(--marquee-duration, 50s) linear infinite; }
+.marquee-pause:hover .marquee, .marquee-pause:focus-within .marquee { animation-play-state: paused; }
+
+/* Sections rise gently into view as you scroll (browsers with scroll-driven animations) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal > * {
+      animation: rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}

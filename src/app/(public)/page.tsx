@@ -4,6 +4,7 @@ import { Hero } from "@/components/homepage/hero";
 import { PadelBanner } from "@/components/homepage/padel-banner";
 import { ChristmasBanner } from "@/components/homepage/christmas-banner";
 import { GoogleReviews } from "@/components/homepage/google-reviews";
+import { LogoMarquee } from "@/components/homepage/logo-marquee";
 import { isChristmasSeason } from "@/lib/season";
 import { OfferCard } from "@/components/perks/offer-card";
 import { StoryCard } from "@/components/stories/story-card";
@@ -16,6 +17,7 @@ import {
   getBusinesses,
   getEvents,
   getFeaturedOffers,
+  getOffers,
   getHomepageSettings,
   getStories,
 } from "@/lib/data";
@@ -29,6 +31,7 @@ export default async function HomePage() {
     getStories(),
     getEvents(),
   ]);
+  const perkCount = (await getOffers()).length;
   const christmas = await isChristmasSeason();
   const community = businesses
     .filter((b) => !b.listingOnly)
@@ -39,7 +42,19 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero hero={settings.hero} />
+      <Hero
+        hero={settings.hero}
+        stats={[
+          { value: businesses.length, label: "Businesses at Squab" },
+          { value: perkCount, label: "Exclusive perks" },
+          { value: 6, label: "Squab sites" },
+        ]}
+      />
+      <LogoMarquee
+        items={businesses
+          .filter((b) => b.logoUrl && !b.listingOnly)
+          .map((b) => ({ slug: b.slug, name: b.name, logoUrl: b.logoUrl!, dark: b.logoBackground === "dark" }))}
+      />
       {christmas && <ChristmasBanner />}
       <PadelBanner />
 
