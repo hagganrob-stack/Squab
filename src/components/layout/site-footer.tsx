@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { Wordmark } from "./wordmark";
 
-const columns = [
+const columns: { title: string; links: { href: string; label: string; external?: boolean }[] }[] = [
   {
     title: "Explore",
     links: [
@@ -22,6 +23,15 @@ const columns = [
     ],
   },
   {
+    title: "The Squab family",
+    links: [
+      { href: "https://squabstorage.co.uk", label: "Squab Storage", external: true },
+      { href: "https://squabworkspace.co.uk", label: "Squab Workspace", external: true },
+      { href: "https://squabremovals.co.uk", label: "Squab Removals", external: true },
+      { href: "https://squabhallfarm.co.uk", label: "Squab Hall Farm", external: true },
+    ],
+  },
+  {
     title: "Legal",
     links: [
       { href: "/about#privacy", label: "Privacy" },
@@ -33,7 +43,7 @@ const columns = [
 export function SiteFooter() {
   return (
     <footer className="bg-black pb-24 text-white/80 lg:pb-0">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+      <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
         <div className="max-w-xs">
           <Wordmark inverted />
           <p className="mt-4 text-sm leading-relaxed text-white/65">
@@ -55,9 +65,17 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2.5 text-sm">
               {col.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="hover:text-white">
-                    {l.label}
-                  </Link>
+                  {l.external ? (
+                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-white">
+                      {l.label}
+                      <ArrowUpRight aria-hidden className="size-3.5 opacity-60" />
+                      <span className="sr-only">(opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    <Link href={l.href} className="hover:text-white">
+                      {l.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
