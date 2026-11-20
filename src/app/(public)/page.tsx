@@ -7,7 +7,7 @@ import { GoogleReviews } from "@/components/homepage/google-reviews";
 import { LogoMarquee } from "@/components/homepage/logo-marquee";
 import { isChristmasSeason } from "@/lib/season";
 import { OfferCard } from "@/components/perks/offer-card";
-import { StoryCard } from "@/components/stories/story-card";
+import { FeatureStoryCard, StoryCard } from "@/components/stories/story-card";
 import { DateTile } from "@/components/events/event-card";
 import { ButtonLink } from "@/components/ui/button";
 import { Logo, Media } from "@/components/ui/media";
@@ -118,7 +118,7 @@ export default async function HomePage() {
             action={{ label: "All news", href: "/news" }}
           />
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
-            <StoryCard story={leadStory} ratio="16/9" size="lg" />
+            <FeatureStoryCard story={leadStory} />
             <div className="grid content-start gap-10">
               {moreStories.slice(0, 2).map((s) => (
                 <StoryCard key={s.id} story={s} ratio="21/9" size="sm" />

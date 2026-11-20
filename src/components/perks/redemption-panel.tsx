@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ConfettiBurst } from "./confetti";
 import { Check, Copy, ExternalLink, Mail, Phone, Smartphone, X } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Wordmark } from "@/components/layout/wordmark";
@@ -100,7 +101,8 @@ function RevealCode(props: Props & { onReveal: () => void; onShop: () => void })
   return (
     <>
       {revealed ? (
-        <div className="flex items-center gap-2 rounded-[var(--radius-control)] border-2 border-dashed border-squab-300 bg-squab-50 p-2 pl-4">
+        <div className="relative flex items-center gap-2 rounded-[var(--radius-control)] border-2 border-dashed border-squab-300 bg-squab-50 p-2 pl-4">
+          <ConfettiBurst />
           <code className="flex-1 font-mono text-xl font-bold tracking-widest text-ink" aria-live="polite">{code}</code>
           <Button
             variant="dark"

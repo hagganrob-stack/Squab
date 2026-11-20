@@ -181,3 +181,20 @@
     }
   }
 }
+
+/* Header photos drift slower than the page as you scroll (The Hide, Meet) */
+@keyframes parallax {
+  from { transform: translate3d(0, 0, 0) scale(1.15); }
+  to { transform: translate3d(0, 7%, 0) scale(1.15); }
+}
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax { animation: parallax linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+  }
+}
+
+/* Celebration burst when a perk code is revealed */
+@keyframes confetti-burst {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate3d(var(--dx), var(--dy), 0) rotate(var(--rot)); opacity: 0; }
+}

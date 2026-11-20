@@ -29,10 +29,14 @@ export function OfferCard({
   return (
     <article
       className={cn(
-        "group relative flex min-h-48 min-w-0 rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line/70 transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-lift",
+        "group relative flex min-h-48 min-w-0 rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line/70 transition-[box-shadow,transform] duration-300 ease-out hover:shadow-lift motion-safe:hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-3deg)_translateY(-4px)]",
         className,
       )}
     >
+      {/* Shine that sweeps across on hover */}
+      <span aria-hidden className="pointer-events-none absolute inset-0 z-[1] overflow-hidden rounded-[var(--radius-card)]">
+        <span className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/45 to-transparent opacity-0 transition-[transform,opacity] duration-700 ease-out group-hover:translate-x-[420%] group-hover:opacity-100 motion-reduce:hidden" />
+      </span>
       {/* Stub */}
       <div className="relative flex w-[7.5rem] shrink-0 flex-col items-center justify-center overflow-hidden rounded-l-[var(--radius-card)] bg-squab-500 px-3 text-center text-ink sm:w-40">
         <span aria-hidden className="absolute -right-8 -top-8 size-20 rounded-full bg-white/20" />

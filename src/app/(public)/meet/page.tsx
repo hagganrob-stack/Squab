@@ -110,7 +110,7 @@ export default function MeetPage() {
           fill
           priority
           sizes="100vw"
-          className="-z-20 object-cover"
+          className="parallax -z-20 object-cover"
         />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/65 to-black/30 lg:bg-gradient-to-r lg:from-black/90 lg:via-black/65 lg:to-black/10" />
         <div className="container-page flex min-h-[32rem] flex-col justify-end py-14 lg:min-h-[36rem] lg:justify-center lg:py-20">

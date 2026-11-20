@@ -69,7 +69,7 @@ export default async function TheHidePage() {
           fill
           priority
           sizes="100vw"
-          className="-z-20 object-cover"
+          className="parallax -z-20 object-cover"
         />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/60 to-black/25 lg:bg-gradient-to-r lg:from-black/90 lg:via-black/60 lg:to-black/10" />
         <div className="container-page flex min-h-[34rem] flex-col justify-end gap-8 py-14 lg:min-h-[38rem] lg:flex-row lg:items-center lg:justify-between lg:py-20">
