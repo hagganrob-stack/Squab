@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { BusinessCard } from "@/components/businesses/business-card";
 import { DirectoryExplorer } from "@/components/businesses/directory-explorer";
+import { LogoMarquee, marqueeItems } from "@/components/homepage/logo-marquee";
 import { PageIntro, Section } from "@/components/ui/section";
 import { getBusinesses } from "@/lib/data";
 
@@ -20,6 +21,7 @@ export default async function BusinessesPage() {
         title="Meet the businesses around you."
         description="Businesses, charities and clubs from across the Squab community. Find someone to work with, buy from or simply say hello to."
       />
+      <LogoMarquee items={marqueeItems(businesses)} />
       <Section aria-label="All businesses" className="pt-10 sm:pt-12">
         <Suspense
           fallback={

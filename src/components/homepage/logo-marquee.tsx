@@ -3,6 +3,13 @@ import { Logo } from "@/components/ui/media";
 
 type Item = { slug: string; name: string; logoUrl: string; dark: boolean };
 
+/** Businesses with a profile and a logo, in carousel form. */
+export function marqueeItems(businesses: { slug: string; name: string; logoUrl?: string; logoBackground?: "light" | "dark"; listingOnly?: boolean }[]): Item[] {
+  return businesses
+    .filter((b) => b.logoUrl && !b.listingOnly)
+    .map((b) => ({ slug: b.slug, name: b.name, logoUrl: b.logoUrl!, dark: b.logoBackground === "dark" }));
+}
+
 /** Endless, pausable strip of business logos. The list is duplicated so the loop is seamless. */
 export function LogoMarquee({ items }: { items: Item[] }) {
   if (items.length < 6) return null;
