@@ -17,7 +17,6 @@ import {
   getBusinesses,
   getEvents,
   getFeaturedOffers,
-  getOffers,
   getHomepageSettings,
   getStories,
 } from "@/lib/data";
@@ -31,7 +30,6 @@ export default async function HomePage() {
     getStories(),
     getEvents(),
   ]);
-  const perkCount = (await getOffers()).length;
   const christmas = await isChristmasSeason();
   const community = businesses
     .filter((b) => !b.listingOnly)
@@ -42,13 +40,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero
-        hero={settings.hero}
-        stats={[
-          { value: perkCount, label: "Exclusive perks" },
-          { value: 6, label: "Squab sites" },
-        ]}
-      />
+      <Hero hero={settings.hero} />
       <LogoMarquee
         items={businesses
           .filter((b) => b.logoUrl && !b.listingOnly)
