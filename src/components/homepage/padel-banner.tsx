@@ -32,17 +32,18 @@ export function PadelBanner() {
             </span>
             Big news
           </p>
-          <h2 id="padel-heading" className="mt-4 text-display font-extrabold leading-[1.02]">
-            Game on. <span className="text-squab-400">Padel</span> is coming to Squab.
+          <h2 id="padel-heading" className="mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+            Game on.<br />
+            <span className="sm:whitespace-nowrap"><span className="text-squab-400">Padel</span> is coming to Squab.</span>
           </h2>
-          <p className="mt-4 max-w-xl text-lg text-white/85">
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/85">
             Plans for an indoor padel centre at Squab Hall Farm have been approved, bringing the UK’s fastest-growing sport right to your doorstep.
           </p>
-          <dl className="mt-7 grid max-w-xl grid-cols-3 gap-3 sm:gap-5">
+          <dl className="mt-8 grid max-w-xl grid-cols-3 gap-3 sm:gap-5">
             {stats.map(([value, label]) => (
               <div key={label} className="border-l-2 border-squab-500 pl-3">
                 <dt className="sr-only">{label}</dt>
-                <dd className="font-display text-xl font-extrabold sm:text-2xl">{value}</dd>
+                <dd className="whitespace-nowrap font-display text-lg font-extrabold sm:text-2xl">{value}</dd>
                 <dd className="text-xs text-white/70 sm:text-sm">{label}</dd>
               </div>
             ))}
