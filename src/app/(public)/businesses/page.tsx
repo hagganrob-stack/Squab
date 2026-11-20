@@ -18,7 +18,7 @@ export default async function BusinessesPage() {
       <PageIntro
         eyebrow="The Network"
         title="Meet the businesses around you."
-        description={`${businesses.length} businesses, charities and clubs are based at Squab — find someone to work with, buy from or simply say hello to.`}
+        description="Businesses, charities and clubs from across the Squab community. Find someone to work with, buy from or simply say hello to."
       />
       <Section aria-label="All businesses" className="pt-10 sm:pt-12">
         <Suspense

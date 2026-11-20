@@ -45,7 +45,6 @@ export default async function HomePage() {
       <Hero
         hero={settings.hero}
         stats={[
-          { value: businesses.length, label: "Businesses at Squab" },
           { value: perkCount, label: "Exclusive perks" },
           { value: 6, label: "Squab sites" },
         ]}

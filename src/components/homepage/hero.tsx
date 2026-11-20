@@ -53,7 +53,7 @@ export function Hero({ hero, stats = [] }: { hero: HomepageSettings["hero"]; sta
             </ButtonLink>
           </div>
           {stats.length > 0 && (
-            <dl className="rise-in mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-white/20 pt-6" style={{ ["--i" as string]: 5 }}>
+            <dl className="rise-in mt-12 grid max-w-sm grid-cols-2 gap-4 border-t border-white/20 pt-6" style={{ ["--i" as string]: 5 }}>
               {stats.map((s) => (
                 <div key={s.label}>
                   <dt className="sr-only">{s.label}</dt>
